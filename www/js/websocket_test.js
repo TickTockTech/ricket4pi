@@ -1,5 +1,6 @@
 // https://www.html5rocks.com/en/tutorials/websockets/basics/
 var console_textarea,
+    console_lines = 0,
     web_socket_conn;
 
 function loaded()
@@ -40,14 +41,19 @@ function loaded()
 
 function consoleOut(message)
 {
+    var console_text;
+    console_lines++;
+    if (console_lines > 90)
+    {
+        console_text = console_textarea.value;
+        console_text = console_text.substring(console_text.indexOf("\n") + 1);
+        console_textarea.value = console_text;
+        console_lines--;
+    }
     console_textarea.value += "\n" + message;
 }
 
 function connectionSend(message)
 {
-//    var leng = new Uint8Array(2);
-//    leng[1] = 0;
-//    leng[0] = message.length;
-//    web_socket_conn.send(leng.buffer)
     web_socket_conn.send(message);
 }
