@@ -29,8 +29,9 @@ function loaded()
     };
 
     // Log messages from the server
-    web_socket_conn.onmessage = function (e) 
+    web_socket_conn.onmessage = function (e)
     {
+        consoleOut(e.data);
         console.log('Server: ' + e.data);
     };
 }
