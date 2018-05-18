@@ -70,6 +70,3 @@ function Robot()
 
 	return obj;
 }
-
-// Initialise Robot!
-Robot();

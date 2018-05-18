@@ -34,6 +34,8 @@ function loaded()
         consoleOut(e.data);
         console.log('Server: ' + e.data);
     };
+
+    Robot();
 }
 
 function consoleOut(message)
