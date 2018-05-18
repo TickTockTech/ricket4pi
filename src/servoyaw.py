@@ -30,16 +30,16 @@ class ServoYaw:
         print
 
     def mid(self):
-        self.pwm.ChangeDutyCycle(YAW_SERVO_MID)
+        self.pwm.start(YAW_SERVO_MID)
         time.sleep(1)
         self.pwm.stop()
 
     def left(self):
-        self.pwm.ChangeDutyCycle(YAW_SERVO_LEFT)
+        self.pwm.start(YAW_SERVO_LEFT)
         time.sleep(1)
         self.pwm.stop()
 
     def right(self):
-        self.pwm.ChangeDutyCycle(YAW_SERVO_RIGHT)
+        self.pwm.start(YAW_SERVO_RIGHT)
         time.sleep(1)
         self.pwm.stop()

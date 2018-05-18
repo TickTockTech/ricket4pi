@@ -32,25 +32,25 @@ class ServoTilt:
         print "ServoTilt on pin:", TILT_SERVO_PIN
 
     def centre(self):
-        self.pwm.ChangeDutyCycle(DIR_SERVO_CENTRE)
+        self.pwm.start(DIR_SERVO_CENTRE)
         print 'TiltServo - Centre'
         time.sleep(2)
         self.pwm.stop()
 
     def up(self):
-        self.pwm.ChangeDutyCycle(DIR_SERVO_UP)
+        self.pwm.start(DIR_SERVO_UP)
         print 'TiltServo - Up'
         time.sleep(2)
         self.pwm.stop()
 
     def down(self):
-        self.pwm.ChangeDutyCycle(DIR_SERVO_DOWN)
+        self.pwm.start(DIR_SERVO_DOWN)
         print 'TiltServo - Down'
         time.sleep(2)
         self.pwm.stop()
 
     def low(self):
-        self.pwm.ChangeDutyCycle(DIR_SERVO_LOW)
+        self.pwm.start(DIR_SERVO_LOW)
         print 'TiltServo - Low'
         time.sleep(2)
         self.pwm.stop()
