@@ -14,7 +14,7 @@ class WebSockServer():
     # Called for every client connecting (after handshake)
     def new_client(self, client, server):
         print("New client connected. id=%d" % client['id'])
-        msg="{{'msg':1,'data':{{'id':'{0}'}}}}".format(client['id'])
+        msg='{{"msg":1,"data":{{"id":{0}}}}}'.format(client['id'])
         print("-> " +  msg)
         self.server.send_message_to_all(msg)
 
@@ -22,7 +22,7 @@ class WebSockServer():
     # Called for every client disconnecting
     def client_left(self, client, server):
         print("Client(%d) disconnected" % client['id'])
-        msg="{{'msg':2,'data':{{'id':'{0}'}}}}".format(client['id'])
+        msg='{{"msg":2,"data":{{"id":{0}}}}}'.format(client['id'])
         print("-> " +  msg)
         self.server.send_message_to_all(msg)
 
@@ -39,6 +39,9 @@ class WebSockServer():
             self.handler(incoming["msg"], incoming["data"])
         else:
             self.handler(incoming["msg"], None)
+
+    def send(self, msg):
+        self.server.send_message_to_all(msg)
 
     def run(self):
         self.server.run_forever()

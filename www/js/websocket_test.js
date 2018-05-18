@@ -32,8 +32,8 @@ function loaded()
     // Log messages from the server
     web_socket_conn.onmessage = function (msg)
     {
-        consoleOut(msg.data);
-        console.log('Server: ' + msg.data);
+        consoleOut("Serer: <- " + msg.data);
+        console.log('Server: <-' + msg.data);
 
         try
         {
@@ -42,8 +42,8 @@ function loaded()
         }
         catch(e)
         {
-            console.err("Invalid message: " + e);
-            console.err("Message: " + msg)
+            console.error("Invalid message: " + e);
+            console.error("Message: " + msg)
         }
     };
 
@@ -66,5 +66,6 @@ function consoleOut(message)
 
 function connectionSend(message)
 {
+    consoleOut("-> " + message);
     web_socket_conn.send(message);
 }
