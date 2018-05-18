@@ -1,6 +1,10 @@
 // https://www.html5rocks.com/en/tutorials/websockets/basics/
 
-var connection = new WebSocket('ws://127.0.0.1:8807');
+var hostaddr = location.hostname,
+    connection;
+
+console.log("Host: " + hostaddr);
+var connection = new WebSocket(", host='127.0.0.1'ws://" + hostaddr + ":8807");
 
 // When the connection is open, send some data to the server
 connection.onopen = function () {
