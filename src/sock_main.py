@@ -42,27 +42,27 @@ def handleMessage(msg, data):
     elif msg == Messages.MSG_RIGHT:
         print "Right!"
         move.right(0.5, 100)
-    elif msg == MSG_SONAR_UP:
+    elif msg == Messages.MSG_SONAR_UP:
         print "Sonar up!"
         tilt.up()
-    elif msg == MSG_SONAR_CENTRE:
+    elif msg == Messages.MSG_SONAR_CENTRE:
         print "Sonar centre!"
         tilt.centre()
-    elif msg == MSG_SONAR_DOWN:
+    elif msg == Messages.MSG_SONAR_DOWN:
         print "Sonar down!"
         tilt.down()
-    elif msg == MSG_SONAR_LOW:
+    elif msg == Messages.MSG_SONAR_LOW:
         print "Sonar low!"
         tilt.low()
-    elif msg == MSG_SONAR_MID:
+    elif msg == Messages.MSG_SONAR_MID:
         print "Sonar middle!"
         yaw.mid()
-    elif msg == MSG_SONAR_LEFT:
+    elif msg ==Messages. MSG_SONAR_LEFT:
         print "Sonar left!"
-        yaw.mid()
-    elif msg == MSG_SONAR_RIGHT:
+        yaw.left()
+    elif msg == Messages.MSG_SONAR_RIGHT:
         print "Sonar right!"
-        yaw.mid()
+        yaw.right()
     else:
         print "[WARN] Not handled!"
 
