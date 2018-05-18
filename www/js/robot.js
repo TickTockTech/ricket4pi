@@ -35,7 +35,7 @@ function Robot()
 	{
 		obj.state = STATE_IDLE;
 
-		connectionSend("{'msg':3}");
+		connectionSend('{"msg":3}');
         consoleOut("Robot: Request sensor data.");
 	}
 

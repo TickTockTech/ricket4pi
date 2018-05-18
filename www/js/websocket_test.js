@@ -20,7 +20,7 @@ function loaded()
     web_socket_conn.onopen = function ()
     {
         consoleOut("Connected.");
-        connectionSend("{'msg':0,'data':{'msg':'Hello Ricket!'}}");
+        connectionSend('{"msg":0,"data":{"msg":"Hello Ricket!"}}');
     };
 
     // Log errors
