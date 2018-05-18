@@ -1,0 +1,6 @@
+Basic principle is to allow access to robot buggy from a web-page.
+
+First step:
+
+ * Serve web-page
+ * Add button to page to request sensor read.
