@@ -38,7 +38,7 @@ function loaded()
         try
         {
             obj = JSON.parse(msg.data)
-            handleMessage(msg.msg, msg.data);
+            handleMessage(obj.msg, obj.data);
         }
         catch(e)
         {
@@ -47,7 +47,7 @@ function loaded()
         }
     };
 
-    Robot();
+    window.robot = Robot();
 }
 
 function consoleOut(message)

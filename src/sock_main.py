@@ -12,6 +12,8 @@ def handleMessage(msg, data):
 
 	if msg == Messages.MSG_READ_SENSORS:
 		print("* * * Read sensors")
+	elif msg = Messages.MSG_FORWARD:
+		move.forward(1, 30)
 
 server = WebSockServer(handleMessage)
 

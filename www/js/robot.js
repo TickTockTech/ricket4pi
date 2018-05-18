@@ -62,6 +62,12 @@ function Robot()
 		obj.last = now;
 	}
 
+	obj.forward = function()
+	{
+		connectionSend('{"msg":' + MSG_FORWARD + '}');
+        consoleOut("Robot: Forward.");
+	}
+
 	obj.state = STATE_INIT;
 	obj.last = (new Date).getTime();
 	obj.timer = setInterval(obj.update, 250);
