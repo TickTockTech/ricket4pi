@@ -11,7 +11,7 @@ echo "Project directory: " $PROJ_DIR
 apt-get update
 apt-get install supervisor
 
-pip install websocket-server
+pip install git+https://github.com/Pithikos/python-websocket-server
 
 cp $PROJ_DIR/scripts/ricket_www.conf /etc/supervisor/conf.d/
 cp $PROJ_DIR/scripts/ricket_websock.conf /etc/supervisor/conf.d/
