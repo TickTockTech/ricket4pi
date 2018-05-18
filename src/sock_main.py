@@ -32,10 +32,10 @@ def handleMessage(msg, data):
         server.send(msg)
     elif msg == Messages.MSG_FORWARD:
         print "Forward!"
-        move.forward(2, 40)
+        move.forward(1, 50)
     elif msg == Messages.MSG_REVERSE:
         print "Reverse!"
-        move.reverse(2, 40)
+        move.reverse(1, 50)
     elif msg == Messages.MSG_LEFT:
         print "Left!"
         move.left(0.5, 100)
