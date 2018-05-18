@@ -4,7 +4,7 @@ var hostaddr = location.hostname,
     connection;
 
 console.log("Host: " + hostaddr);
-var connection = new WebSocket(", host='127.0.0.1'ws://" + hostaddr + ":8807");
+var connection = new WebSocket(host="ws://" + hostaddr + ":8807");
 
 // When the connection is open, send some data to the server
 connection.onopen = function () {
