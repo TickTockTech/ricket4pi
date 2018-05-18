@@ -26,10 +26,13 @@ def handleMessage(msg, data):
 
     if msg == Messages.MSG_READ_SENSORS:
         msg='{{"msg":{0},"data":{{"irL":{1},"irR":{2},"lineL":{3},"lineR":{4},"dist":{5}}}}}';
-	    msg = msg.format(Messages.MSG_SENSOR_DATA, irL, irR, lineL, lineR, sonar)
+        msg = msg.format(Messages.MSG_SENSOR_DATA, irL, irR, lineL, lineR, sonar)
         server.send(msg)
-    elif msg = Messages.MSG_FORWARD:
-        move.forward(1, 30)
+    elif msg == Messages.MSG_FORWARD:
+        print "Forward!"
+        move.forward(2, 30)
+    else:
+        print "[WARN] Not handled!"
 
 server = WebSockServer(handleMessage)
 
