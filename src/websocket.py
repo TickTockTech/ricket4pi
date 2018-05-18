@@ -40,6 +40,9 @@ class WebSockServer():
         else:
             self.handler(incoming["msg"], None)
 
+    def send(self, msg):
+        self.server.send_message_to_all(msg)
+
     def run(self):
         self.server.run_forever()
 
