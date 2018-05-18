@@ -20,7 +20,7 @@ function loaded()
     web_socket_conn.onopen = function ()
     {
         consoleOut("Connected.");
-        connectionSend('{"msg":0,"data":{"msg":"Hello Ricket!"}}');
+        connectionSend('{"msg":' + MSG_NULL + ',"data":{"msg":"Hello Ricket!"}}');
     };
 
     // Log errors
@@ -30,10 +30,21 @@ function loaded()
     };
 
     // Log messages from the server
-    web_socket_conn.onmessage = function (e)
+    web_socket_conn.onmessage = function (msg)
     {
-        consoleOut(e.data);
-        console.log('Server: ' + e.data);
+        consoleOut(msg.data);
+        console.log('Server: ' + msg.data);
+
+        try
+        {
+            obj = JSON.parse(msg.data)
+            handleMessage(msg.msg, msg.data);
+        }
+        catch(e)
+        {
+            console.err("Invalid message: " + e);
+            console.err("Message: " + msg)
+        }
     };
 
     Robot();

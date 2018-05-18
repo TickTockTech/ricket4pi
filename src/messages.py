@@ -1,0 +1,7 @@
+class Messages:
+
+	MSG_NULL = 0
+	MSG_JOIN = 1
+	MSG_LEAVE = 2
+	MSG_READ_SENSORS = 3
+	MSG_SENSOR_DATA = 3
