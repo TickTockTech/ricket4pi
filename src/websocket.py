@@ -4,7 +4,9 @@ import logging
 # Called for every client connecting (after handshake)
 def new_client(client, server):
     print("New client connected and was given id %d" % client['id'])
-    server.send_message_to_all("Hey all, a new client has joined us")
+    msg="{{'msg':1,'data':{{'id':'{0}'}}}}".format(client['id'])
+    print("-> " +  msg)
+    server.send_message_to_all(msg)
 
 
 # Called for every client disconnecting
