@@ -68,6 +68,24 @@ function Robot()
         consoleOut("Robot: Forward.");
 	}
 
+	obj.reverse = function()
+	{
+		connectionSend('{"msg":' + MSG_REVERSE + '}');
+        consoleOut("Robot: Reverse.");
+	}
+
+	obj.left = function()
+	{
+		connectionSend('{"msg":' + MSG_LEFT + '}');
+        consoleOut("Robot: Left.");
+	}
+
+	obj.right = function()
+	{
+		connectionSend('{"msg":' + MSG_RIGHT + '}');
+        consoleOut("Robot: Right.");
+	}
+
 	obj.state = STATE_INIT;
 	obj.last = (new Date).getTime();
 	obj.timer = setInterval(obj.update, 250);

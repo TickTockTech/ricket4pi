@@ -23,7 +23,6 @@ class MotorSensor:
         if (self._sensorClicks >= self._targetClicks):
             self._reachedTarget.set()
 
-
 SENS_L = 0
 SENS_R = 1
 
@@ -49,6 +48,48 @@ def forward(revs, speed):
     # 50, 11-12
     # 70, 13
     # 100, 13-14
+    robohat.stop()
+
+    time.sleep(1)
+    print("final clicks: ", s._sensorClicks)
+
+# revs: number of wheel turns, float.
+def reverse(revs, speed):
+    robohat.reverse(speed)
+
+    clicks = int(revs*CLICKS_PER_REV)
+    # doesn't matter which side's sensor we use
+    s = sensors[SENS_L]
+    s.start(clicks).wait(5)
+
+    robohat.stop()
+
+    time.sleep(1)
+    print("final clicks: ", s._sensorClicks)
+
+# revs: number of wheel turns, float.
+def left(revs, speed):
+    robohat.spinLeft(speed)
+
+    clicks = int(revs*CLICKS_PER_REV)
+    # doesn't matter which side's sensor we use
+    s = sensors[SENS_L]
+    s.start(clicks).wait(5)
+
+    robohat.stop()
+
+    time.sleep(1)
+    print("final clicks: ", s._sensorClicks)
+
+# revs: number of wheel turns, float.
+def right(revs, speed):
+    robohat.spinRight(speed)
+
+    clicks = int(revs*CLICKS_PER_REV)
+    # doesn't matter which side's sensor we use
+    s = sensors[SENS_L]
+    s.start(clicks).wait(5)
+
     robohat.stop()
 
     time.sleep(1)
