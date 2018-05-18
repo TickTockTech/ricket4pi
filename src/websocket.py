@@ -3,7 +3,7 @@ import logging
 
 # Called for every client connecting (after handshake)
 def new_client(client, server):
-    print("New client connected and was given id %d" % client['id'])
+    print("New client connected. id=%d" % client['id'])
     msg="{{'msg':1,'data':{{'id':'{0}'}}}}".format(client['id'])
     print("-> " +  msg)
     server.send_message_to_all(msg)
@@ -12,13 +12,15 @@ def new_client(client, server):
 # Called for every client disconnecting
 def client_left(client, server):
     print("Client(%d) disconnected" % client['id'])
-
+    msg="{{'msg':2,'data':{{'id':'{0}'}}}}".format(client['id'])
+    print("-> " +  msg)
+    server.send_message_to_all(msg)
 
 # Called when a client sends a message
 def message_received(client, server, message):
     if len(message) > 200:
         message = message[:200]+'..'
-    print("Client(%d) said: %s" % (client['id'], message))
+    print("id #%d <- %s" % (client['id'], message))
 
 
 PORT=8807
