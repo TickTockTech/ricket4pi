@@ -2,6 +2,8 @@ from websocket import WebSockServer
 import movement as move
 import robohat
 from messages import Messages
+from servoyaw import ServoYaw
+from servotilt import ServoTilt
 
 robohat.init()
 move.init()
@@ -44,5 +46,7 @@ def handleMessage(msg, data):
         print "[WARN] Not handled!"
 
 server = WebSockServer(handleMessage)
+tilt = ServoTilt()
+yaw = ServoYaw()
 
 server.run()

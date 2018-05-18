@@ -2,7 +2,7 @@ from websocket_server import WebsocketServer
 import logging
 import json
 
-class WebSockServer():
+class WebSockServer:
     def __init__(self, handler):
         PORT=8807
         self.server = WebsocketServer(PORT, host='0.0.0.0', loglevel=logging.DEBUG)
