@@ -13,13 +13,21 @@ Python code for 4tronix initio robot buggy. Web-Interface to make it more access
 
 To Start:
 
-    sudo supervisorctl start ricket_websock
-    sudo supervisorctl start ricket_www
+    sudo supervisorctl start ricket:websock
+    sudo supervisorctl start ricket:www
+
+or
+
+    sudo supervisorctl start ricket:*
 
 To Stop:
     
-    sudo supervisorctl stop ricket_www
-    sudo supervisorctl stop ricket_websock
+    sudo supervisorctl stop ricket:www
+    sudo supervisorctl stop ricket:websock
+
+or
+
+    sudo supervisorctl stop ricket:*
    
 To Check:
 
