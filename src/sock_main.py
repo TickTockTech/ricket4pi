@@ -31,6 +31,15 @@ def handleMessage(msg, data):
     elif msg == Messages.MSG_FORWARD:
         print "Forward!"
         move.forward(2, 30)
+    elif msg == Messages.MSG_REVERSE:
+        print "Reverse!"
+        move.reverse(2, 30)
+    elif msg == Messages.MSG_LEFT:
+        print "Left!"
+        move.left(1, 80)
+    elif msg == Messages.MSG_RIGHT:
+        print "Right!"
+        move.right(1, 80)
     else:
         print "[WARN] Not handled!"
 
