@@ -1,12 +1,16 @@
 function sensor_data(data)
 {
 	var td_irL = document.getElementById("irL"),
-	    td_irR = document.getElementById("irL"),
-	    td_lineL = document.getElementById("irL"),
-	    td_lineR = document.getElementById("irL"),
+	    td_irR = document.getElementById("irR"),
+	    td_lineL = document.getElementById("lineL"),
+	    td_lineR = document.getElementById("lineR"),
 	    td_dist = document.getElementById("dist");
 
-	debugger
+	td_irL.bgColor = data.irL ? "#00FF00" : "#FF0000";
+        td_irR.bgColor = data.irR ? "#00FF00" : "#FF0000";
+        td_lineL.bgColor = data.lineL ? "#00FF00" : "#FF0000";
+        td_lineR.bgColor = data.lineR ? "#00FF00" : "#FF0000";
+        td_dist.innerHTML = (data.dist << 0) + "&nbsp;mm";
 }
 
 function handleMessage(msg, data)

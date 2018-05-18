@@ -86,6 +86,12 @@ function Robot()
         consoleOut("Robot: Right.");
 	}
 
+        obj.getSensorData = function()
+        {
+            connectionSend('{"msg":' + MSG_READ_SENSORS + '}');
+            consoleOut("Robot: Request sensor data.");
+        }
+
 	obj.state = STATE_INIT;
 	obj.last = (new Date).getTime();
 	obj.timer = setInterval(obj.update, 250);
