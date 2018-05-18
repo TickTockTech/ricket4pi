@@ -2,9 +2,21 @@
     <head>
         <title>Ricket4Pi - Test Page</title>
         <script src="js/websocket_test.js"></script>
+        <style>
+#console
+{
+	font-size: 14px;
+	font-weight: normal;
+	resize: none;
+    width: 600px;
+    height: 100px;
+    overflow-y: auto;
+}
+        </style>
     </head>
-    <body>
+    <body onload="loaded();">
         <h1>Ricket4Pi</h1>
         <h2>Test Page</h2>
+        <textarea id="console" rows="100" cols="80" readonly></textarea>
     </body>
 </html>

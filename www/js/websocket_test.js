@@ -1,23 +1,42 @@
 // https://www.html5rocks.com/en/tutorials/websockets/basics/
+var console_textarea;
 
-var hostaddr = location.hostname,
-    connection;
+function loaded()
+{
+	var hostaddr = location.hostname,
+		ws_addr,
+	    connection;
 
-console.log("Host: " + hostaddr);
-var connection = new WebSocket(host="ws://" + hostaddr + ":8807");
+	console_textarea = document.getElementById("console");
+	consoleOut("Host: " + hostaddr);
 
-// When the connection is open, send some data to the server
-connection.onopen = function () {
-  connection.send('Hello Ricket!'); // Send the message 'Ping' to the server
-};
+	ws_addr = "ws://" + hostaddr + ":8807";
+	consoleOut("Socket Address: " + ws_addr);
 
-// Log errors
-connection.onerror = function (error) {
-  console.log('WebSocket Error ' + error);
-};
+	connection = new WebSocket(host=ws_addr);
 
-// Log messages from the server
-connection.onmessage = function (e) {
-  console.log('Server: ' + e.data);
-};
+	// When the connection is open, send some data to the server
+	connection.onopen = function () 
+	{
+		consoleOut("Connected.");
+	    connection.send("{'msg':0,'data':{'msg':'Hello Ricket!'}}");
+	};
+
+	// Log errors
+	connection.onerror = function (error)
+	{
+	    console.log('WebSocket Error ' + error);
+	};
+
+	// Log messages from the server
+	connection.onmessage = function (e) 
+	{
+	    console.log('Server: ' + e.data);
+	};
+}
+
+function consoleOut(message)
+{
+	console_textarea.value += "\n" + message;
+}
 
