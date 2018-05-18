@@ -106,7 +106,7 @@ function Robot()
 
     obj.tiltDown = function()
     {
-        connectionSend('{"msg":' + MSG_SONAR_Down + '}');
+        connectionSend('{"msg":' + MSG_SONAR_DOWN + '}');
         consoleOut("Robot: Tilt down.");
     }
 
