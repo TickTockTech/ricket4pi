@@ -22,10 +22,12 @@ DIR_SERVO_CENTRE = 300/5
 class ServoTilt:
     def __init__(self):
         gpio.setup(TILT_SERVO_PIN, gpio.OUT)
-        self.pwn = gpio.PWM(TILT_SERVO_PIN, 500)   # frequency is 500Hz, so each pulse is 5ms wide
+        self.pwm = gpio.PWM(TILT_SERVO_PIN, 500)   # frequency is 500Hz, so each pulse is 5ms wide
         # servos will be fully left at 0.5ms, centred at 1.5ms and fully right at 2.5ms
 
         self.pwm.start(DIR_SERVO_CENTRE) # start it at 50% - should be centre of servo
+        time.sleep(1)
+        self.pwm.stop()
 
         print "ServoTilt on pin:", TILT_SERVO_PIN
 

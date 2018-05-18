@@ -19,10 +19,12 @@ class ServoYaw:
     def __init__(self):
         gpio.setup(YAW_SERVO_PIN, gpio.OUT)
 
-        self.pwm = gpio.PWM(servo, 200)   # frequency is 500Hz, so each pulse is 5ms wide
+        self.pwm = gpio.PWM(YAW_SERVO_PIN, 200)   # frequency is 500Hz, so each pulse is 5ms wide
         # servos will be fully left at 0.5ms, centred at 1.5ms and fully right at 2.5ms
 
-        self.mid()
+        self.pwm.start(YAW_SERVO_MID)
+        time.sleep(1)
+        self.pwm.stop()
 
         print "ServoYaw on pin:", YAW_SERVO_PIN
         print
@@ -40,4 +42,4 @@ class ServoYaw:
     def right(self):
         self.pwm.ChangeDutyCycle(YAW_SERVO_RIGHT)
         time.sleep(1)
-        self.pwm.stop()    
+        self.pwm.stop()
