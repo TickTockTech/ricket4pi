@@ -1,0 +1,9 @@
+Package: Ricket4Pi
+Version: 9.9-9
+Section: Base
+Priority: optional
+Architecture: all
+Depends: supervisor
+Maintainer: Allan Robertson <allan@yisup.net>
+Description: Web interface for 4tronix Initio robot buggy.
+

@@ -106,3 +106,4 @@ venv.bak/
 # Logs
 /logs/*.err
 /logs/*.log
+/bin/*.deb
