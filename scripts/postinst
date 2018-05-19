@@ -1,3 +1,17 @@
 #! /bin/bash
 
 supervisorctl reload
+
+echo ""
+echo "NOTES"
+echo ""
+echo "Python websocket-server is required for the WebSocket server to run. This needs to be the latest"
+echo "version. To install use:"
+echo "> sudo pip install git+https://github.com/Pithikos/python-websocket-server"
+echo ""
+echo "Check that it it not already installed first:"
+echo "> pip list | grep websocket-server"
+echo ""
+echo "If it is remove it and reinstall from github for latest."
+echo "> sudo pip uninstall websocket-server"
+echo ""
