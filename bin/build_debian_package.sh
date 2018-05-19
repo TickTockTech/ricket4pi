@@ -39,4 +39,6 @@ rm -rf $BASE_FOLDER/bin/debian_package
 echo ""
 echo "Package name: ${PACKAGE_NAME}_${PACKAGE_VERSION}_all.deb"
 echo "Package available in: $SCRIPT_PATH"
-
+echo ""
+echo "To install > sudo dpkg -i ${PACKAGE_NAME}_${PACKAGE_VERSION}_all.deb"
+echo ""
