@@ -35,8 +35,6 @@ echo "Fixing permissions."
 chmod 755 debian_package/DEBIAN/postinst
 chmod 755 debian_package/DEBIAN/postrm
 
-exit(1)
-
 echo "Building package."
 dpkg-deb --build debian_package
 
