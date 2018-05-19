@@ -8,6 +8,7 @@ SCRIPT_NAME=$0
 SCRIPT_PATH="$( cd "$(dirname "$0")" ; pwd -P )"
 BASE_FOLDER="$( cd "$(dirname "$0")/../" ; pwd -P )"
 PROJECT_NAME=ricket4pi
+INSTALL_FOLDER="/opt/$PROJECT_NAME"
 
 echo "Changing to directory: $SCRIPT_PATH."
 cd $SCRIPT_PATH
@@ -15,6 +16,7 @@ cd $SCRIPT_PATH
 echo "Creating folder structure."
 mkdir -p debian_package/opt/$PROJECT_NAME/www
 mkdir -p debian_package/opt/$PROJECT_NAME/src
+mkdir -p debian_package/opt/$PROJECT_NAME/logs
 mkdir -p debian_package/etc/supervisor/conf.d
 mkdir -p debian_package/DEBIAN/
 
@@ -26,9 +28,14 @@ cp $BASE_FOLDER/scripts/debian_control debian_package/DEBIAN/control
 cp $BASE_FOLDER/scripts/postinst debian_package/DEBIAN/
 cp $BASE_FOLDER/scripts/postrm debian_package/DEBIAN/
 
+echo "Package will install to: $INSTALL_FOLDER."
+sed -i "s@\[install_dir\]@$INSTALL_FOLDER@g" debian_package/etc/supervisor/conf.d/ricket.conf
+
 echo "Fixing permissions."
 chmod 755 debian_package/DEBIAN/postinst
 chmod 755 debian_package/DEBIAN/postrm
+
+exit(1)
 
 echo "Building package."
 dpkg-deb --build debian_package
