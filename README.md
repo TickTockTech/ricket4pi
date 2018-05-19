@@ -1,6 +1,15 @@
-# ricket4pi
+# Ricket4Pi
 
-Python code for 4tronix initio robot buggy. Web-Interface to make it more accessible.
+Python code for 4tronix initio robot buggy. Web-Interface to make it more accessible using a tablet, laptop, phone, etc...
+
+# To Install from Package on the Buggy
+
+    sudo apt-get update
+    sudo apt-get install supervisor
+    sudo pip install git+https://github.com/Pithikos/python-websocket-server
+    wget https://github.com/koyoki-al/ricket4pi/raw/master/builds/ricket4pi_0.0.1-1_all.deb
+    sudo dpkg -i ricket4pi_0.0.1-1_all.deb
+
 
 # Install
 
@@ -9,7 +18,14 @@ Python code for 4tronix initio robot buggy. Web-Interface to make it more access
     cd bin
     ./install.sh
 
-# Running
+# To Operate Buggy
+
+    Switch on Raspberry Pi mounted on 4Tronix Initio buggy.
+    Open 'http://[Initio Raspberry Pi IP address]:8080' in a browser on another machine or tablet.
+    Control buggy with buttons on web-page.
+   
+
+# Running Server on Raspberry Pi
 
 To Start:
 
