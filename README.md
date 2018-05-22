@@ -7,8 +7,8 @@ Python code for 4tronix initio robot buggy. Web-Interface to make it more access
     sudo apt-get update
     sudo apt-get install supervisor
     sudo pip install git+https://github.com/Pithikos/python-websocket-server
-    wget https://github.com/koyoki-al/ricket4pi/raw/master/builds/ricket4pi_0.0.1-1_all.deb
-    sudo dpkg -i ricket4pi_0.0.1-1_all.deb
+    wget https://github.com/koyoki-al/ricket4pi/raw/master/builds/ricket4pi_0.0.1-2_all.deb
+    sudo dpkg -i ricket4pi_0.0.1-2_all.deb
 
 
 # Install
