@@ -113,7 +113,7 @@ function Robot()
 
         revs = turn_revs.value;
         speed = turn_speed.value;
-        
+
         connectionSend('{"msg":' + MSG_RIGHT + ',"data":{"r":' + revs + ',"s":' + speed + '}}');
         consoleOut("Robot: Right.");
     }
@@ -176,6 +176,12 @@ function Robot()
     {
         connectionSend('{"msg":' + MSG_PARK_SONAR + '}');
         consoleOut("Robot: Sonar park.");
+    }
+
+    obj.sonarFloor = function()
+    {
+        connectionSend('{"msg":' + MSG_FLOOR_SONAR + '}');
+        consoleOut("Robot: Sonar floor.");
     }
 
     obj.resetClicks = function()

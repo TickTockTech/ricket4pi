@@ -132,6 +132,9 @@ def handleMessage(msg, data):
     elif msg == Messages.MSG_PARK_SONAR:
         yaw.mid()
         tilt.park()
+    elif msg == Messages.MSG_FLOOR_SONAR:
+        yaw.mid()
+        tilt.floor()
     elif msg == Messages.MSG_GET_CLICKS:
         clicks = move.getClicks()
         msg='{{"msg":{0},"data":{{"clicks":{1}}}}}';

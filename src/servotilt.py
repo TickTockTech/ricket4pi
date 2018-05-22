@@ -16,6 +16,7 @@ DIR_SERVO_DOWN = 30
 DIR_SERVO_LOW = 35
 DIR_SERVO_CENTRE = 25
 DIR_SERVO_PARK = 5
+DIR_SERVO_FLOOR = 50
 
 TILT_FREQ = 200
 
@@ -74,6 +75,14 @@ class ServoTilt:
         self.pwm = gpio.PWM(TILT_SERVO_PIN, TILT_FREQ)
         self.pwm.start(DIR_SERVO_PARK)
         print 'TiltServo - Park'
+        time.sleep(TILT_DELAY)
+        self.pwm.stop()
+        time.sleep(TILT_PAUSE) 
+
+    def floor(self):
+        self.pwm = gpio.PWM(TILT_SERVO_PIN, TILT_FREQ)
+        self.pwm.start(DIR_SERVO_FLOOR)
+        print 'TiltServo - Floor'
         time.sleep(TILT_DELAY)
         self.pwm.stop()
         time.sleep(TILT_PAUSE)
