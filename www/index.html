@@ -42,19 +42,19 @@
                             <td><input type="button" value="Right" onClick="robot.right();"></td>
                         </tr>
                         <tr>
-                                <td></td>
-                                <td><input type="button" value="Scan" onClick="robot.sonarScan();"></td>
-                                <td></td>
+                            <td></td>
+                            <td><input type="button" value="Scan" onClick="robot.sonarScan();"></td>
+                            <td></td>
                         </tr>
                         <tr>
-                                <td></td>
-                                <td><input type="button" value="Sensors" onClick="robot.getSensorData();"></td>
-                                <td></td>
+                            <td></td>
+                            <td><input type="button" value="Sensors" onClick="robot.getSensorData();"></td>
+                            <td></td>
                         </tr>
                         <tr>
-                                <td><input type="button" value="Reset Clicks" onClick="robot.resetClicks();"></td>
-                                <td></td>
-                                <td><input type="button" value="Get Clicks" onClick="robot.getClicks();"></td>
+                            <td><input type="button" value="Reset Clicks" onClick="robot.resetClicks();"></td>
+                            <td></td>
+                            <td><input type="button" value="Get Clicks" onClick="robot.getClicks();"></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -116,6 +116,28 @@
                                     </tr>
                                 </table>
                             </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan=2>
+                    <table>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>Drive</td>
+                            <td>Turn</td>
+                        </tr>
+                        <tr>
+                            <td>Revs</td>
+                            <td><input id="drive_revs" type="range" min="0.25" max="5" step="0.25" value="2"/></td>
+                            <td><input id="turn_revs" type="range" min="0.1" max="3" step="0.1" value="0.5"/></td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Speed</td>
+                            <td><input id="drive_speed" type="range" min="10" max="100" step="5" value="40"/></td>
+                            <td><input id="turn_speed" type="range" min="10" max="100" step="5" value="100"/></td>
                         </tr>
                     </table>
                 </td>

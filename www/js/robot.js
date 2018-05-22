@@ -64,25 +64,57 @@ function Robot()
 
     obj.forward = function()
     {
-        connectionSend('{"msg":' + MSG_FORWARD + '}');
+        var drive_revs = document.getElementById("drive_revs"),
+            drive_speed = document.getElementById("drive_speed"),
+            revs,
+            speed;
+
+        revs = drive_revs.value;
+        speed = drive_speed.value;
+
+        connectionSend('{"msg":' + MSG_FORWARD + ',"data":{"r":' + revs + ',"s":' + speed + '}}');
         consoleOut("Robot: Forward.");
     }
 
     obj.reverse = function()
     {
-        connectionSend('{"msg":' + MSG_REVERSE + '}');
+        var drive_revs = document.getElementById("drive_revs"),
+            drive_speed = document.getElementById("drive_speed"),
+            revs,
+            speed;
+
+        revs = drive_revs.value;
+        speed = drive_speed.value;
+
+        connectionSend('{"msg":' + MSG_REVERSE + ',"data":{"r":' + revs + ',"s":' + speed + '}}');
         consoleOut("Robot: Reverse.");
     }
 
     obj.left = function()
     {
-        connectionSend('{"msg":' + MSG_LEFT + '}');
+        var turn_revs = document.getElementById("turn_revs"),
+            turn_speed = document.getElementById("turn_speed"),
+            revs,
+            speed;
+
+        revs = turn_revs.value;
+        speed = turn_speed.value;
+
+        connectionSend('{"msg":' + MSG_LEFT + ',"data":{"r":' + revs + ',"s":' + speed + '}}');
         consoleOut("Robot: Left.");
     }
 
     obj.right = function()
     {
-        connectionSend('{"msg":' + MSG_RIGHT + '}');
+        var turn_revs = document.getElementById("turn_revs"),
+            turn_speed = document.getElementById("turn_speed"),
+            revs,
+            speed;
+
+        revs = turn_revs.value;
+        speed = turn_speed.value;
+        
+        connectionSend('{"msg":' + MSG_RIGHT + ',"data":{"r":' + revs + ',"s":' + speed + '}}');
         consoleOut("Robot: Right.");
     }
 
