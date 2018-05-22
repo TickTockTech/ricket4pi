@@ -14,53 +14,68 @@ def jsonBool(boole):
     else:
         return "false"
 
-def sonarScan(self):
+def sonarScan():
+    global tilt, yaw
+
+    print "(o  ) 1"
     yaw.left()
     tilt.up()
     uL = robohat.getDistance()
 
+    print "( o ) 2"
     yaw.mid()
     uM = robohat.getDistance()
 
+    print "(  o) 3"
     yaw.right()
+    print "(:"
     uR = robohat.getDistance()
 
+    print "(  -) 4"
     tilt.centre()
     cR = robohat.getDistance()
 
+    print "( - ) 5"
     yaw.mid()
     cM = robohat.getDistance()
 
-    yaw.right()
+    print "(-  ) 6"
+    yaw.left()
     cL = robohat.getDistance()
 
+    print "(o  ) 7"
     tilt.down()
     dR = robohat.getDistance()
 
+    print "( o ) 8"
     yaw.mid()
     dM = robohat.getDistance()
 
-    yaw.left()
+    print "(  o) 9"
+    yaw.right()
     dL = robohat.getDistance()
 
+    print "(  -) 10"
     tilt.low()
     lR = robohat.getDistance()
 
+    print "( - ) 11"
     yaw.mid()
     lM = robohat.getDistance()
 
-    yaw.right()
+    print "(-  ) 12"
+    yaw.left()
     lL = robohat.getDistance()
 
     yaw.mid()
     tilt.centre()
 
-    msg='{{"msg":{0},"data":{[[{1},{2},{3}],[{4},{5},{6}],[{7},{8},{9}],[{10},{11},{12}]]}}';
+    msg='{{"msg":{},"data":{{"dist":[[{},{},{}],[{},{},{}],[{},{},{}],[{},{},{}]]}}}}';
     msg = msg.format(Messages.MSG_SONAR_SCAN_DATA, uL, uM, uR, cL, cM, cR, dL, dM, dR, lL, lM, lR)
     server.send(msg)
 
 def handleMessage(msg, data):
-    global server
+    global server, tilt, yaw
 
     print("Incoming", msg, data)
 
@@ -124,9 +139,9 @@ def handleMessage(msg, data):
     elif msg == Messages.MSG_SONAR_RIGHT:
         print "Sonar right!"
         yaw.right()
-    if msg == Messages.MSG_SONAR_SCAN:
+    elif msg == Messages.MSG_SONAR_SCAN:
         sonarScan()
-    if msg == Messages.MSG_PARK_SONAR:
+    elif msg == Messages.MSG_PARK_SONAR:
         yaw.mid()
         tilt.park()
     else:

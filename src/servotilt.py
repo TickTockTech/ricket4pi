@@ -19,6 +19,8 @@ DIR_SERVO_PARK = 5
 
 TILT_FREQ = 200
 
+TILT_DELAY = 1.5
+
 # Assumed done in robothat.py
 # gpio.setmode(gpio.BOARD)
 
@@ -29,7 +31,7 @@ class ServoTilt:
         # servos will be fully left at 0.5ms, centred at 1.5ms and fully right at 2.5ms
 
         self.pwm.start(DIR_SERVO_CENTRE) # start it at 50% - should be centre of servo
-        time.sleep(1)
+        time.sleep(TILT_DELAY)
         self.pwm.stop()
 
         print "ServoTilt on pin:", TILT_SERVO_PIN
@@ -38,33 +40,33 @@ class ServoTilt:
         self.pwm = gpio.PWM(TILT_SERVO_PIN, TILT_FREQ)
         self.pwm.start(DIR_SERVO_CENTRE)
         print 'TiltServo - Centre'
-        time.sleep(1)
+        time.sleep(TILT_DELAY)
         self.pwm.stop()
 
     def up(self):
         self.pwm = gpio.PWM(TILT_SERVO_PIN, TILT_FREQ)
         self.pwm.start(DIR_SERVO_UP)
         print 'TiltServo - Up'
-        time.sleep(1)
+        time.sleep(TILT_DELAY)
         self.pwm.stop()
 
     def down(self):
         self.pwm = gpio.PWM(TILT_SERVO_PIN, TILT_FREQ)
         self.pwm.start(DIR_SERVO_DOWN)
         print 'TiltServo - Down'
-        time.sleep(1)
+        time.sleep(TILT_DELAY)
         self.pwm.stop()
 
     def low(self):
         self.pwm = gpio.PWM(TILT_SERVO_PIN, TILT_FREQ)
         self.pwm.start(DIR_SERVO_LOW)
         print 'TiltServo - Low'
-        time.sleep(1)
+        time.sleep(TILT_DELAY)
         self.pwm.stop()
 
     def park(self):
         self.pwm = gpio.PWM(TILT_SERVO_PIN, TILT_FREQ)
         self.pwm.start(DIR_SERVO_PARK)
         print 'TiltServo - Park'
-        time.sleep(1)
+        time.sleep(TILT_DELAY)
         self.pwm.stop()
