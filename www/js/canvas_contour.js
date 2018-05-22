@@ -1,12 +1,30 @@
 // Linear estimated value between two points
 function smoothPoint(v1, v2, range, offset)
 {
-	var dV, os;
+    var dV, os;
 
-	dV = v1 - v2;
-	os = offset / range;
+    if (v1 > 255)
+    {
+        v1 = 255;
+    }
+    else if (v1 < 0)
+    {
+        v1 = 0;
+    }
 
-	return v1 - (dV * os)
+    if (v2 > 255)
+    {
+        v2 = 255;
+    }
+    else if (v2 < 0)
+    {
+        v2 = 0;
+    }
+
+    dV = v1 - v2;
+    os = offset / range;
+
+    return v1 - (dV * os)
 }
 
 // Given a small array array use the smoothing function to fill in the spaces to create a bigger one
@@ -47,8 +65,6 @@ function expandData(dataA)
 
 	    	//console.log("Point: " + tlX + "/" + x + ", " + tlY + "/" + y + ". Coords: " + iX + ", " + iY + ". Mods: " + modX + ", " + modY);
 	    	tL = dataA[tlX][tlY];
-	    	if (tlX + 1 >= dataA.length) debugger;
-	    	if (tlY >= dataA[tlX + 1].length) debugger;
 	    	tR = dataA[tlX + 1][tlY];
 	    	bL = dataA[tlX][tlY + 1];
 	    	bR = dataA[tlX + 1][tlY + 1];
@@ -92,7 +108,7 @@ function colourCanvas(dataArray)
 		x = i % REQUIRED_WIDTH;
 		y = (i / REQUIRED_WIDTH) << 0;
 		//if (i > 4000) debugger;
-		shade = dataArray[x][y];
+		shade = 255 - dataArray[x][y];
 
 
   		imgData.data[4 * i] = shade;    // RED (0-255)
