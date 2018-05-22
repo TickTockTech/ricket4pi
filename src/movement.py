@@ -96,7 +96,9 @@ def right(revs, speed):
     print("final clicks: ", s._sensorClicks)
 
 def getClicks():
-    return _sensorClicks
+    s = sensors[SENS_L]
+    return s._sensorClicks
 
 def resetClicks():
-    return _sensorClicks
+    s = sensors[SENS_L]
+    s._sensorClicks = 0

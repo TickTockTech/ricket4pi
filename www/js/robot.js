@@ -149,13 +149,13 @@ function Robot()
     obj.resetClicks = function()
     {
         connectionSend('{"msg":' + MSG_RESET_CLICKS + '}');
-        consoleOut("Robot: Sonar park.");
+        consoleOut("Robot: reset clicks.");
     }
 
     obj.getClicks = function()
     {
         connectionSend('{"msg":' + MSG_GET_CLICKS + '}');
-        consoleOut("Robot: Sonar park.");
+        consoleOut("Robot: get clicks.");
     }
 
     obj.state = STATE_INIT;

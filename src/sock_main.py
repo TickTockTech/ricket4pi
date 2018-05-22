@@ -144,12 +144,12 @@ def handleMessage(msg, data):
     elif msg == Messages.MSG_PARK_SONAR:
         yaw.mid()
         tilt.park()
-    if msg == Messages.MSG_GET_CLICKS:
+    elif msg == Messages.MSG_GET_CLICKS:
         clicks = move.getClicks()
         msg='{{"msg":{0},"data":{{"clicks":{1}}}}}';
-        msg = msg.format(Messages.MSG_CLICK_DATA, irL, irR, lineL, lineR, sonar)
+        msg = msg.format(Messages.MSG_CLICK_DATA, clicks)
         server.send(msg)
-    if msg == Messages.MSG_RESET_CLICKS:
+    elif msg == Messages.MSG_RESET_CLICKS:
         move.resetClicks()
     else:
         print "[WARN] Not handled!", msg
