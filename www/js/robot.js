@@ -196,6 +196,32 @@ function Robot()
         consoleOut("Robot: get clicks.");
     }
 
+    obj.sonarTilt = function()
+    {
+        var tilt_slide = document.getElementById("tilt_slide");
+
+        obj.tiltPercent(tilt_slide.value);
+    }
+
+    obj.sonarYaw = function()
+    {
+        var yaw_slide = document.getElementById("yaw_slide");
+
+        obj.yawPercent(yaw_slide.value);
+    }
+
+    obj.tiltPercent = function(val)
+    {
+        connectionSend('{"msg":' + MSG_TILT_PERCENT + ',"data":{"v":' + val + '}}');
+        consoleOut("Robot: tilt - " + val + "%");
+    }
+
+    obj.yawPercent = function(val)
+    {
+        connectionSend('{"msg":' + MSG_YAW_PERCENT + ',"data":{"v":' + val + '}}');
+        consoleOut("Robot: yaw - " + val + "%");
+    }
+
     obj.state = STATE_INIT;
     obj.last = (new Date).getTime();
     obj.timer = setInterval(obj.update, 250);

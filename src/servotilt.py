@@ -86,3 +86,23 @@ class ServoTilt:
         time.sleep(TILT_DELAY)
         self.pwm.stop()
         time.sleep(TILT_PAUSE)
+
+    def percentage(self, value):
+        if value > 100:
+            value = 100
+        elif value < 0:
+            value = 0
+
+        range = DIR_SERVO_FLOOR - DIR_SERVO_PARK
+
+        d = (range / 100) * value
+
+        pos = DIR_SERVO_PARK + d
+
+        self.pwm = gpio.PWM(TILT_SERVO_PIN, TILT_FREQ)
+        self.pwm.start(pos)
+        print 'TiltServo - tilt',pos,'%'
+        time.sleep(TILT_DELAY)
+        self.pwm.stop()
+        time.sleep(TILT_PAUSE)
+
