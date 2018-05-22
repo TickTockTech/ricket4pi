@@ -1,12 +1,12 @@
 function sensor_data(data)
 {
-	var td_irL = document.getElementById("irL"),
-	    td_irR = document.getElementById("irR"),
-	    td_lineL = document.getElementById("lineL"),
-	    td_lineR = document.getElementById("lineR"),
-	    td_dist = document.getElementById("dist");
+    var td_irL = document.getElementById("irL"),
+        td_irR = document.getElementById("irR"),
+        td_lineL = document.getElementById("lineL"),
+        td_lineR = document.getElementById("lineR"),
+        td_dist = document.getElementById("dist");
 
-	td_irL.bgColor = data.irL ? "#00FF00" : "#FF0000";
+    td_irL.bgColor = data.irL ? "#00FF00" : "#FF0000";
     td_irR.bgColor = data.irR ? "#00FF00" : "#FF0000";
     td_lineL.bgColor = data.lineL ? "#00FF00" : "#FF0000";
     td_lineR.bgColor = data.lineR ? "#00FF00" : "#FF0000";
@@ -15,14 +15,14 @@ function sensor_data(data)
 
 function click_data(data)
 {
-	var td_clicks = document.getElementById("clicks");
+    var td_clicks = document.getElementById("clicks");
 
     td_clicks.innerHTML = data.clicks;
 }
 
 function handleMessage(msg, data)
 {
-	console.log("In: " + msg + ", Data: " + JSON.stringify(data));
+    console.log("In: " + msg + ", Data: " + JSON.stringify(data));
 
 	switch(msg)
 	{
