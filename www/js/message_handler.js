@@ -32,5 +32,8 @@ function handleMessage(msg, data)
 		case MSG_CLICK_DATA:
 			click_data(data);
 			break;
+		case MSG_SONAR_SCAN_DATA:
+			colourCanvas(data.dist);
+			break;
 	}
 }

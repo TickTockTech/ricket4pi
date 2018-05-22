@@ -4,3 +4,10 @@ First step:
 
  * Serve web-page
  * Add button to page to request sensor read.
+
+Second step:
+
+ * Extrapolate scan data to monochrome image.
+ * Add granularity to tilt mechanism and messages.
+ * Wheel click calibration with wall in-front.
+ * Possible turn calibration using wall in-front and trig.
