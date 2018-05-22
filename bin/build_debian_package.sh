@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PACKAGE_NAME=ricket4pi
-PACKAGE_VERSION="0.0.1-2"
+PACKAGE_VERSION="0.0-3"
 
 ORIGINAL_PATH=$(pwd -P)
 SCRIPT_NAME=$0
