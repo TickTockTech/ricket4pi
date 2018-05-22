@@ -71,7 +71,7 @@ def handleMessage(msg, data):
         lineR = jsonBool( robohat.irRightLine() )
         sonar = robohat.getDistance()
 
-    if msg == Messages.MSG_READ_SENSORS:
+        print "Read sensors!"
         msg='{{"msg":{0},"data":{{"irL":{1},"irR":{2},"lineL":{3},"lineR":{4},"dist":{5}}}}}';
         msg = msg.format(Messages.MSG_SENSOR_DATA, irL, irR, lineL, lineR, sonar)
         server.send(msg)
@@ -130,7 +130,7 @@ def handleMessage(msg, data):
         yaw.mid()
         tilt.park()
     else:
-        print "[WARN] Not handled!"
+        print "[WARN] Not handled!", msg
 
 server = WebSockServer(handleMessage)
 tilt = ServoTilt()
