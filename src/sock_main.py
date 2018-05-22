@@ -94,10 +94,10 @@ def handleMessage(msg, data):
         revs = 2
         speed = 40
         if data != None:
-            if data.r != None:
-                revs = data.r
-            if data.s != None:
-                speed = data.s
+            if "r" in data:
+                revs = data["r"]
+            if "s" in data:
+                speed = data["s"]
         if msg == Messages.MSG_FORWARD:
             print "Forward!"
             move.forward(revs, speed)
@@ -108,10 +108,10 @@ def handleMessage(msg, data):
         revs = 0.5
         speed = 100
         if data != None:
-            if data.r != None:
-                revs = data.r
-            if data.s != None:
-                speed = data.s
+            if "r" in data:
+                revs = data["r"]
+            if "s" in data:
+                speed = data["s"]
         if msg == Messages.MSG_LEFT:
             print "Left!"
             move.left(revs, speed)
