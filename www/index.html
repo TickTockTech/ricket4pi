@@ -31,6 +31,11 @@
                     	</tr>
                         <tr>
                                 <td></td>
+                                <td><input type="button" value="Scan" onClick="robot.sonarScan();"></td>
+                                <td></td>
+                        </tr>
+                        <tr>
+                                <td></td>
                                 <td><input type="button" value="Sensors" onClick="robot.getSensorData();"></td>
                                 <td></td>
                         </tr>
@@ -61,6 +66,9 @@
                         <tr>
                             <td style="text-align:center">
                                 <table>
+                                    <tr>
+                                        <td style="text-align:center"><input type="button" value="Park" onClick="robot.sonarPark();"></td>
+                                    </tr>
                                     <tr>
                                         <td style="text-align:center"><input type="button" value="Up" onClick="robot.tiltUp();"></td>
                                     </tr>

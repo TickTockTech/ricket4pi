@@ -15,6 +15,7 @@ DIR_SERVO_UP = 20
 DIR_SERVO_DOWN = 30
 DIR_SERVO_LOW = 35
 DIR_SERVO_CENTRE = 25
+DIR_SERVO_PARK = 5
 
 TILT_FREQ = 200
 
@@ -37,26 +38,33 @@ class ServoTilt:
         self.pwm = gpio.PWM(TILT_SERVO_PIN, TILT_FREQ)
         self.pwm.start(DIR_SERVO_CENTRE)
         print 'TiltServo - Centre'
-        time.sleep(2)
+        time.sleep(1)
         self.pwm.stop()
 
     def up(self):
         self.pwm = gpio.PWM(TILT_SERVO_PIN, TILT_FREQ)
         self.pwm.start(DIR_SERVO_UP)
         print 'TiltServo - Up'
-        time.sleep(2)
+        time.sleep(1)
         self.pwm.stop()
 
     def down(self):
         self.pwm = gpio.PWM(TILT_SERVO_PIN, TILT_FREQ)
         self.pwm.start(DIR_SERVO_DOWN)
         print 'TiltServo - Down'
-        time.sleep(2)
+        time.sleep(1)
         self.pwm.stop()
 
     def low(self):
         self.pwm = gpio.PWM(TILT_SERVO_PIN, TILT_FREQ)
         self.pwm.start(DIR_SERVO_LOW)
         print 'TiltServo - Low'
-        time.sleep(2)
+        time.sleep(1)
+        self.pwm.stop()
+
+    def park(self):
+        self.pwm = gpio.PWM(TILT_SERVO_PIN, TILT_FREQ)
+        self.pwm.start(DIR_SERVO_PARK)
+        print 'TiltServo - Park'
+        time.sleep(1)
         self.pwm.stop()

@@ -134,6 +134,18 @@ function Robot()
         consoleOut("Robot: Sonar right.");
     }
 
+    obj.sonarScan = function()
+    {
+        connectionSend('{"msg":' + MSG_SONAR_SCAN + '}');
+        consoleOut("Robot: Sonar scan.");
+    }
+
+    obj.sonarPark = function()
+    {
+        connectionSend('{"msg":' + MSG_PARK_SONAR + '}');
+        consoleOut("Robot: Sonar park.");
+    }
+
     obj.state = STATE_INIT;
     obj.last = (new Date).getTime();
     obj.timer = setInterval(obj.update, 250);
