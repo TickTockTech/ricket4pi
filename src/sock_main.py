@@ -15,31 +15,40 @@ def jsonBool(boole):
         return "false"
 
 def sonarScan(self):
+    print "(o  ) 1"
     yaw.left()
     tilt.up()
     uL = robohat.getDistance()
 
+    print "( o ) 2"
     yaw.mid()
     uM = robohat.getDistance()
 
+    print "(  o) 3"
     yaw.right()
     uR = robohat.getDistance()
 
+    print "(  -) 4"
     tilt.centre()
     cR = robohat.getDistance()
 
+    print "( - ) 5"
     yaw.mid()
     cM = robohat.getDistance()
 
+    print "(-  ) 6"
     yaw.right()
     cL = robohat.getDistance()
 
+    print "(o  ) 7"
     tilt.down()
     dR = robohat.getDistance()
 
+    print "( o ) 8"
     yaw.mid()
     dM = robohat.getDistance()
 
+    print "(  o) 9"
     yaw.left()
     dL = robohat.getDistance()
 
@@ -60,7 +69,7 @@ def sonarScan(self):
     server.send(msg)
 
 def handleMessage(msg, data):
-    global server
+    global server, tilt, yaw
 
     print("Incoming", msg, data)
 
@@ -129,6 +138,13 @@ def handleMessage(msg, data):
     if msg == Messages.MSG_PARK_SONAR:
         yaw.mid()
         tilt.park()
+    if msg == Messages.MSG_GET_CLICKS:
+        clicks = move.getClicks()
+        msg='{{"msg":{0},"data":{{"clicks":{1}}}}}';
+        msg = msg.format(Messages.MSG_CLICK_DATA, irL, irR, lineL, lineR, sonar)
+        server.send(msg)
+    if msg == Messages.MSG_RESET_CLICKS:
+        move.resetClicks()
     else:
         print "[WARN] Not handled!", msg
 

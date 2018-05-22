@@ -95,3 +95,8 @@ def right(revs, speed):
     time.sleep(1)
     print("final clicks: ", s._sensorClicks)
 
+def getClicks():
+    return _sensorClicks
+
+def resetClicks():
+    return _sensorClicks
