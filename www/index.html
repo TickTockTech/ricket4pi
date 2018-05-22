@@ -16,6 +16,18 @@
     height: 100px;
     overflow-y: auto;
 }
+
+#button_grid td
+{
+    text-align: center;
+}
+
+#button_grid td
+{
+    text-align: center;
+}
+
+.centerTable { margin: 0px auto; }
         </style>
     </head>
     <body onload="loaded();">
@@ -23,7 +35,7 @@
         <table>
             <tr>
                 <td>
-                    <table>
+                    <table id="button_grid" class="centerTable">
                         <tr>
                             <td><input type="button" value="Left" onClick="robot.left();"></td>
                             <td><input type="button" value="Forward" onClick="robot.forward();"></td>
@@ -52,9 +64,12 @@
                     </table>
                 </td>
                 <td>
-                    <table border="1" padding="20" cellpadding="5">
+                    <table border="1" padding="20" cellpadding="5" class="centerTable">
                         <tr>
-                            <td id="dist" colspan="2">&nbsp;</td>
+                            <td id="dist" colspan="2">?? cm</td>
+                        </tr>
+                        <tr>
+                            <td id="clicks" colspan="2">?</td>
                         </tr>
                         <tr>
                             <td id="irL">&nbsp;</td>
@@ -67,10 +82,11 @@
                     </table>
                 </td>
                 <td>
-                    <table>
+                    <table class="centerTable">
                         <tr>
-                            <td style="text-align:center">
-                                <table>
+                            <td>&nbsp;</td>
+                            <td>
+                                <table class="centerTable">
                                     <tr>
                                         <td style="text-align:center"><input type="button" value="Park" onClick="robot.sonarPark();"></td>
                                     </tr>
@@ -88,9 +104,10 @@
                                     </tr>
                                 </table>
                             </td>
+                            <td>&nbsp;</td>
                         </tr>
                         <tr>
-                            <td>
+                            <td colspan="3">
                                 <table>
                                     <tr>
                                         <td><input type="button" value="Left" onClick="robot.sonarLeft();"></td>

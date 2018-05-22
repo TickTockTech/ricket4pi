@@ -7,10 +7,17 @@ function sensor_data(data)
 	    td_dist = document.getElementById("dist");
 
 	td_irL.bgColor = data.irL ? "#00FF00" : "#FF0000";
-        td_irR.bgColor = data.irR ? "#00FF00" : "#FF0000";
-        td_lineL.bgColor = data.lineL ? "#00FF00" : "#FF0000";
-        td_lineR.bgColor = data.lineR ? "#00FF00" : "#FF0000";
-        td_dist.innerHTML = (data.dist << 0) + "&nbsp;mm";
+    td_irR.bgColor = data.irR ? "#00FF00" : "#FF0000";
+    td_lineL.bgColor = data.lineL ? "#00FF00" : "#FF0000";
+    td_lineR.bgColor = data.lineR ? "#00FF00" : "#FF0000";
+    td_dist.innerHTML = (data.dist << 0) + "&nbsp;cm";
+}
+
+function click_data(data)
+{
+	var td_clicks = document.getElementById("clicks");
+
+    td_clicks.innerHTML = data.clicks;
 }
 
 function handleMessage(msg, data)
@@ -21,6 +28,9 @@ function handleMessage(msg, data)
 	{
 		case MSG_SENSOR_DATA:
 			sensor_data(data);
+			break;
+		case MSG_CLICK_DATA:
+			click_data(data);
 			break;
 	}
 }
