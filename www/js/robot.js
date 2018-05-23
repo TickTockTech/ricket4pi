@@ -222,6 +222,65 @@ function Robot()
         consoleOut("Robot: yaw - " + val + "%");
     }
 
+    obj.detailedScan = function()
+    {
+        var tilt, yaw, renderData, i;
+
+        stage = obj._stage || 0;
+        result = obj._result || [];
+
+        if (stage == 25)
+        {
+            renderData = expandData(result);
+            colourCanvas(renderData);
+
+            obj._scanning = false;
+            return;
+        }
+
+        if (!obj._scanning)
+        {
+            for(i = 0; i < 5; ++i)
+            {
+                obj._result[i] = [];
+            }
+            obj._scanning = true;   
+        }
+
+        yaw = (stage % 5) * 25;
+        tilt = 25 + (((stage / 5) << 0) * 10)
+
+        connectionSend('{"msg":' + MSG_TILT_PERCENT + ',"data":{"v":' + tilt + '}}');
+        connectionSend('{"msg":' + MSG_YAW_PERCENT + ',"data":{"v":' + yaw + '}}');
+
+        obj._stage = stage + 1;
+
+    }
+
+    obj.incomingMessage = function(msg, data)
+    {
+        var x, y;
+        switch(msg)
+        {
+        case MSG_OK_DONE:
+            if (obj._scanning && data.msg == MSG_YAW_PERCENT)
+            {
+                obj.state_request_sensor_data();
+            }
+            break;
+        case MSG_SENSOR_DATA:
+            if (obj._scanning)
+            {
+                x = (stage % 5)
+                y = ((stage / 5) << 0)
+                console.log("[INFO] Scan[" + x + "," + y +"] = " + data.dist);
+                obj._result[x][y] = data.dist;
+                obj.detailedScan();
+            }
+            break;
+        }
+    }
+
     obj.state = STATE_INIT;
     obj.last = (new Date).getTime();
     obj.timer = setInterval(obj.update, 250);

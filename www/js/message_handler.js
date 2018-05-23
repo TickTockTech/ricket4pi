@@ -38,5 +38,12 @@ function handleMessage(msg, data)
             expand = expandData(data.dist);
             colourCanvas(expand);
             break;
+        default:
+            console.log("[WARNING] " + msg + " not handled.")
 	}
+
+    if (window.robot)
+    {
+        robot.incomingMessage(msg, data);
+    }
 }
