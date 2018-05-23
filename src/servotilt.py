@@ -15,7 +15,7 @@ DIR_SERVO_UP = 20
 DIR_SERVO_DOWN = 30
 DIR_SERVO_LOW = 35
 DIR_SERVO_CENTRE = 25
-DIR_SERVO_PARK = 5
+DIR_SERVO_PARK = 10
 DIR_SERVO_FLOOR = 40
 
 TILT_FREQ = 200
@@ -93,15 +93,16 @@ class ServoTilt:
         elif value < 0:
             value = 0
 
-        range = DIR_SERVO_FLOOR - DIR_SERVO_PARK
+	value = 100 - value
+        range = float(DIR_SERVO_FLOOR - DIR_SERVO_PARK)
 
         d = (range / 100) * value
 
-        pos = DIR_SERVO_PARK + d
+        pos = int(DIR_SERVO_PARK + d)
 
         self.pwm = gpio.PWM(TILT_SERVO_PIN, TILT_FREQ)
         self.pwm.start(pos)
-        print 'TiltServo - tilt',pos,'%'
+        print "TiltServo - tilt {0}%  (d {1} v {2} r {3})".format(pos, d, value, range)
         time.sleep(TILT_DELAY)
         self.pwm.stop()
         time.sleep(TILT_PAUSE)

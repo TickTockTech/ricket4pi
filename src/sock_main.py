@@ -149,10 +149,10 @@ def handleMessage(msg, data):
                 val = data["v"]
         if msg == Messages.MSG_TILT_PERCENT:
             print "Tilt", val
-            tilt.percent(val)
+            tilt.percentage(val)
         else:
             print "Yaw", val
-            yaw.percent(val)
+            yaw.percentage(val)
     else:
         print "[WARN] Not handled!", msg
 

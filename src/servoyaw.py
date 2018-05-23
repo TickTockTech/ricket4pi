@@ -61,11 +61,12 @@ class ServoYaw:
         elif value < 0:
             value = 0
 
-        range = YAW_SERVO_LEFT - YAW_SERVO_RIGHT
+        value = 100 - value
+        range = float(YAW_SERVO_LEFT - YAW_SERVO_RIGHT)
 
         d = (range / 100) * value
 
-        pos = YAW_SERVO_RIGHT + d
+        pos = int(YAW_SERVO_RIGHT + d)
 
         self.pwm = gpio.PWM(YAW_SERVO_PIN, YAW_FREQ)
         self.pwm.start(pos)
