@@ -142,6 +142,17 @@ def handleMessage(msg, data):
         server.send(msg)
     elif msg == Messages.MSG_RESET_CLICKS:
         move.resetClicks()
+    elif msg == Messages.MSG_TILT_PERCENT or msg == Messages.MSG_YAW_PERCENT:
+        v = 50
+        if data != None:
+            if "v" in data:
+                val = data["v"]
+        if msg == Messages.MSG_TILT_PERCENT:
+            print "Tilt", val
+            tilt.percent(val)
+        else:
+            print "Yaw", val
+            yaw.percent(val)
     else:
         print "[WARN] Not handled!", msg
 

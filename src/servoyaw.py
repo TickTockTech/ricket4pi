@@ -54,3 +54,22 @@ class ServoYaw:
         time.sleep(YAW_DELAY)
         self.pwm.stop()
         time.sleep(YAW_PAUSE)
+
+    def percentage(self, value):
+        if value > 100:
+            value = 100
+        elif value < 0:
+            value = 0
+
+        range = YAW_SERVO_LEFT - YAW_SERVO_RIGHT
+
+        d = (range / 100) * value
+
+        pos = YAW_SERVO_RIGHT + d
+
+        self.pwm = gpio.PWM(YAW_SERVO_PIN, YAW_FREQ)
+        self.pwm.start(pos)
+        print 'YawServo - yaw',pos,'%'
+        time.sleep(YAW_DELAY)
+        self.pwm.stop()
+        time.sleep(YAW_PAUSE)

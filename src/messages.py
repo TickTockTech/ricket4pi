@@ -22,3 +22,6 @@ class Messages:
     MSG_RESET_CLICKS = 20
     MSG_GET_CLICKS = 21
     MSG_CLICK_DATA = 22
+    MSG_TILT_PERCENT = 23
+    MSG_YAW_PERCENT = 24
+    MSG_OK_DONE = 25
