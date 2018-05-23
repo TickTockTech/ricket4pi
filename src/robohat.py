@@ -120,12 +120,9 @@ def init():
     b = GPIO.PWM(R2, 20)
     b.start(0)
 
-    startServos()
-
 # cleanup(). Sets all motors off and sets GPIO to standard values
 def cleanup():
     stop()
-    stopServos()
     GPIO.cleanup()
 
 # version(). Returns 2. Invalid until after init() has been called
@@ -275,45 +272,3 @@ def getDistance():
     return distance
 
 # End of UltraSonic Functions    
-#======================================================================
-
-#======================================================================
-# Servo Functions
-# Pirocon/Microcon/RoboHAT use ServoD to control servos
-
-def setServo(Servo, Degrees):
-    global ServosActive
-    #print "ServosActive:", ServosActive
-    #print "Setting servo"
-    if ServosActive == False:
-        startServos()
-    pinServod (Servo, Degrees) # for now, simply pass on the input values
-
-def stopServos():
-    #print "Stopping servo"
-    stopServod()
-    
-def startServos():
-    #print "Starting servod as CPU =", CPU
-    startServod()
-    
-def startServod():
-    global ServosActive
-    #print "Starting servod. ServosActive:", ServosActive
-    SCRIPTPATH = os.path.split(os.path.realpath(__file__))[0]
-    #os.system("sudo pkill -f servod")
-    initString = "sudo " + SCRIPTPATH +'/servod --pcm --idle-timeout=20000 --p1pins="18,22" > /dev/null'
-    os.system(initString)
-    #print initString
-    ServosActive = True
-
-def pinServod(pin, degrees):
-    #print pin, degrees
-    pinString = "echo " + str(pin) + "=" + str(50+ ((90 - degrees) * 200 / 180)) + " > /dev/servoblaster"
-    #print pinString
-    os.system(pinString)
-    
-def stopServod():
-    global ServosActive
-    os.system("sudo pkill -f servod")
-    ServosActive = False
