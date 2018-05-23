@@ -22,7 +22,7 @@ mkdir -p debian_package/DEBIAN/
 
 echo "Creating scripts."
 cp $BASE_FOLDER/src/*.py debian_package/opt/$PROJECT_NAME/src/
-cp -r $BASE_FOLDER/www/*.* debian_package/opt/$PROJECT_NAME/www/
+cp -R $BASE_FOLDER/www/ debian_package/opt/$PROJECT_NAME/
 cp $BASE_FOLDER/scripts/ricket.conf debian_package/etc/supervisor/conf.d/
 cp $BASE_FOLDER/scripts/debian_control debian_package/DEBIAN/control
 cp $BASE_FOLDER/scripts/postinst debian_package/DEBIAN/
