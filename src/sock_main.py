@@ -45,7 +45,7 @@ def sonarScan():
 
     print "(o  ) 7"
     tilt.down()
-    dR = robohat.getDistance()
+    dL = robohat.getDistance()
 
     print "( o ) 8"
     yaw.mid()
@@ -53,25 +53,13 @@ def sonarScan():
 
     print "(  o) 9"
     yaw.right()
-    dL = robohat.getDistance()
-
-    print "(  -) 10"
-    tilt.low()
-    lR = robohat.getDistance()
-
-    print "( - ) 11"
-    yaw.mid()
-    lM = robohat.getDistance()
-
-    print "(-  ) 12"
-    yaw.left()
-    lL = robohat.getDistance()
+    dR = robohat.getDistance()
 
     yaw.mid()
     tilt.centre()
 
-    msg='{{"msg":{},"data":{{"dist":[[{},{},{}],[{},{},{}],[{},{},{}],[{},{},{}]]}}}}';
-    msg = msg.format(Messages.MSG_SONAR_SCAN_DATA, uL, uM, uR, cL, cM, cR, dL, dM, dR, lL, lM, lR)
+    msg='{{"msg":{},"data":{{"dist":[[{},{},{}],[{},{},{}],[{},{},{}]]}}}}';
+    msg = msg.format(Messages.MSG_SONAR_SCAN_DATA, uL, cL, dL, uM, cM, dM, uR, cR, dR)
     server.send(msg)
 
 def handleMessage(msg, data):
@@ -144,6 +132,9 @@ def handleMessage(msg, data):
     elif msg == Messages.MSG_PARK_SONAR:
         yaw.mid()
         tilt.park()
+    elif msg == Messages.MSG_FLOOR_SONAR:
+        yaw.mid()
+        tilt.floor()
     elif msg == Messages.MSG_GET_CLICKS:
         clicks = move.getClicks()
         msg='{{"msg":{0},"data":{{"clicks":{1}}}}}';

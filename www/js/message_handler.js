@@ -22,15 +22,21 @@ function click_data(data)
 
 function handleMessage(msg, data)
 {
+    var expand;
+
     console.log("In: " + msg + ", Data: " + JSON.stringify(data));
 
     switch(msg)
     {
-    case MSG_SENSOR_DATA:
-        sensor_data(data);
-        break;
-    case MSG_CLICK_DATA:
-        click_data(data);
-        break;
-    }
+        case MSG_SENSOR_DATA:
+            sensor_data(data);
+            break;
+        case MSG_CLICK_DATA:
+            click_data(data);
+            break;
+        case MSG_SONAR_SCAN_DATA:
+            expand = expandData(data.dist);
+            colourCanvas(expand);
+            break;
+	}
 }

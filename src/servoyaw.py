@@ -17,6 +17,7 @@ YAW_SERVO_MID = 30
 
 YAW_FREQ = 200
 YAW_DELAY = 1.5
+YAW_PAUSE = 0.25
 
 class ServoYaw:
     def __init__(self):
@@ -28,6 +29,7 @@ class ServoYaw:
         self.pwm.start(YAW_SERVO_MID)
         time.sleep(YAW_DELAY)
         self.pwm.stop()
+	time.sleep(YAW_PAUSE)
 
         print "ServoYaw on pin:", YAW_SERVO_PIN
         print
@@ -37,15 +39,18 @@ class ServoYaw:
         self.pwm.start(YAW_SERVO_MID)
         time.sleep(YAW_DELAY)
         self.pwm.stop()
+        time.sleep(YAW_PAUSE)
 
     def left(self):
         self.pwm = gpio.PWM(YAW_SERVO_PIN, YAW_FREQ)
         self.pwm.start(YAW_SERVO_LEFT)
         time.sleep(YAW_DELAY)
         self.pwm.stop()
+        time.sleep(YAW_PAUSE)
 
     def right(self):
         self.pwm = gpio.PWM(YAW_SERVO_PIN, YAW_FREQ)
         self.pwm.start(YAW_SERVO_RIGHT)
         time.sleep(YAW_DELAY)
         self.pwm.stop()
+        time.sleep(YAW_PAUSE)
