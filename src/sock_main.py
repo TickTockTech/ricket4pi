@@ -153,9 +153,9 @@ def handleMessage(msg, data):
         else:
             print "Yaw", val
             yaw.percentage(val)
-        msg='{{"msg":{0},"data":{{"msg":{1}}}}}';
-        msg = msg.format(Messages.MSG_OK_DONE, msg)
-        server.send(msg)
+        reply='{{"msg":{0},"data":{{"msg":{1}}}}}';
+        reply = reply.format(Messages.MSG_OK_DONE, msg)
+        server.send(reply)
     else:
         print "[WARN] Not handled!", msg
 

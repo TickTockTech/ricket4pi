@@ -227,30 +227,40 @@ function Robot()
         var tilt, yaw, renderData, i;
 
         stage = obj._stage || 0;
-        result = obj._result || [];
 
         if (stage == 25)
         {
-            renderData = expandData(result);
+            renderData = expandData(obj._result);
             colourCanvas(renderData);
 
             obj._scanning = false;
+            obj._result = undefined;
+
+            connectionSend('{"msg":' + MSG_SONAR_CENTRE + '}');
+            connectionSend('{"msg":' + MSG_SONAR_MID + '}');
+
             return;
         }
 
         if (!obj._scanning)
         {
+            obj._result = [];
             for(i = 0; i < 5; ++i)
             {
                 obj._result[i] = [];
             }
-            obj._scanning = true;   
+            obj._scanning = true;
         }
 
         yaw = (stage % 5) * 25;
         tilt = 25 + (((stage / 5) << 0) * 10)
 
-        connectionSend('{"msg":' + MSG_TILT_PERCENT + ',"data":{"v":' + tilt + '}}');
+        if ((stage % 5) == 0)
+	{
+		connectionSend('{"msg":' + MSG_TILT_PERCENT + ',"data":{"v":' + tilt + '}}');
+	}
+        // Could reverse yaw sweep each row to reduce movement.
+        // Then wouldn't need to move when tilt is adjusted.
         connectionSend('{"msg":' + MSG_YAW_PERCENT + ',"data":{"v":' + yaw + '}}');
 
         obj._stage = stage + 1;
@@ -265,7 +275,7 @@ function Robot()
         case MSG_OK_DONE:
             if (obj._scanning && data.msg == MSG_YAW_PERCENT)
             {
-                obj.state_request_sensor_data();
+                connectionSend('{"msg":' + MSG_READ_SENSORS + '}');
             }
             break;
         case MSG_SENSOR_DATA:
