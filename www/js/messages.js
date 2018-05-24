@@ -23,5 +23,8 @@ var MSG_NULL = 0,
     MSG_CLICK_DATA = 22,
     MSG_TILT_PERCENT = 23,
     MSG_YAW_PERCENT = 24,
-    MSG_OK_DONE = 25;
+    MSG_OK_DONE = 25,
+    MSG_ERROR = 26,
+    MSG_WARNING = 27,
+    MSG_DETAIL_SCAN = 28;
 

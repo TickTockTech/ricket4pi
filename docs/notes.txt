@@ -2,12 +2,24 @@ Basic principle is to allow access to robot buggy from a web-page.
 
 First step:
 
- * Serve web-page
- * Add button to page to request sensor read.
+ X Serve web-page
+ X Add button to page to request sensor read.
 
 Second step:
 
- * Extrapolate scan data to monochrome image.
- * Add granularity to tilt mechanism and messages.
+ X Extrapolate scan data to monochrome image.
+ X Add granularity to tilt mechanism and messages.
  * Wheel click calibration with wall in-front.
  * Possible turn calibration using wall in-front and trig.
+ * Add forward to interrupt command
+
+Refactoring
+
+ * Send id. with messages.
+
+Improvements
+
+ * Basic scan scans tighter area.
+ * Return angle estimate from turn.
+ * Return clicks and ir after move.
+ * Remove client-side scan.
