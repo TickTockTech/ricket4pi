@@ -119,6 +119,7 @@ def handleMessage(msg, data):
     elif msg == Messages.MSG_FORWARD or msg == Messages.MSG_REVERSE:
         revs = 2
         speed = 40
+        clicks = move.getClicks()
         if data != None:
             if "r" in data:
                 revs = data["r"]
@@ -130,9 +131,15 @@ def handleMessage(msg, data):
         else:
             print "Reverse!"
             move.reverse(revs, speed)
+        newClicks = move.getClicks()
+        totClicks = newClicks - clicks
+        reply='{{"msg":{0},"data":{{"msg":{1},"clicks":{2},"revs":{3}}}}}';
+        reply = reply.format(Messages.MSG_OK_DONE, msg, totClicks, (float(totClicks / movement.CLICKS_PER_REV)))
+        server.send(reply)
     elif msg == Messages.MSG_LEFT or msg == Messages.MSG_RIGHT:
         revs = 0.5
         speed = 100
+        clicks = move.getClicks()
         if data != None:
             if "r" in data:
                 revs = data["r"]
@@ -144,6 +151,11 @@ def handleMessage(msg, data):
         else:
             print "Right!"
             move.right(revs, speed)
+        newClicks = move.getClicks()
+        totClicks = newClicks - clicks
+        reply='{{"msg":{0},"data":{{"msg":{1},"clicks":{2},"revs":{3}}}}}';
+        reply = reply.format(Messages.MSG_OK_DONE, msg, totClicks, (float(totClicks / movement.CLICKS_PER_REV)))
+        server.send(reply)
     elif msg == Messages.MSG_SONAR_UP:
         print "Sonar up!"
         tilt.up()
