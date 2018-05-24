@@ -19,39 +19,25 @@ def sonarScan():
 
     print "(o  ) 1"
     yaw.left()
+
     tilt.up()
     uL = robohat.getDistance()
-
-    print "( o ) 2"
     yaw.mid()
     uM = robohat.getDistance()
-
-    print "(  o) 3"
     yaw.right()
-    print "(:"
     uR = robohat.getDistance()
 
-    print "(  -) 4"
     tilt.centre()
     cR = robohat.getDistance()
-
-    print "( - ) 5"
     yaw.mid()
     cM = robohat.getDistance()
-
-    print "(-  ) 6"
     yaw.left()
     cL = robohat.getDistance()
 
-    print "(o  ) 7"
     tilt.down()
     dL = robohat.getDistance()
-
-    print "( o ) 8"
     yaw.mid()
     dM = robohat.getDistance()
-
-    print "(  o) 9"
     yaw.right()
     dR = robohat.getDistance()
 
@@ -61,6 +47,68 @@ def sonarScan():
     msg='{{"msg":{},"data":{{"dist":[[{},{},{}],[{},{},{}],[{},{},{}]]}}}}';
     msg = msg.format(Messages.MSG_SONAR_SCAN_DATA, uL, cL, dL, uM, cM, dM, uR, cR, dR)
     server.send(msg)
+
+def detailedSonarScan(hGran=5, vGran=5, width=60, height=40, x = 50, y = 40):
+    global tilt, yaw
+
+    wX = x - (width / 2)
+    wY = y + (width / 2)
+
+    if wX < 0 or wY < 0 or wX > 100 or wY > 100:
+        server.send('{{"msg":{},"data":{{"error":"{}""}}}}'.format(Messages.MSG_ERROR, "Scan coordinates are invalid."))
+        return
+
+    dX = float(width) / hGran;
+    dY = float(height) / vGran;
+    lr = True
+    cX = 0
+    cY = 0
+    print "Scan start:", wX, wY
+    print "Deltas:", dX, dY
+    print "Size:", hGran, vGran
+
+    print "Yaw:", wX
+    yaw.percentage(wX)
+    response = '{"msg":' + str(Messages.MSG_SONAR_SCAN_DATA) + ',"data":{"dist":['
+
+    while cY < vGran:
+        if cX != 0 or cY != 0:
+            response += ","
+        response += "["
+
+        scanline = []
+        while cX < hGran:
+            if cX == 0:
+                if (wY <= 100):
+                    print "Tilt:", wY
+                    tilt.percentage( int(wY) )
+            else:
+                if lr:
+                    wX += dX
+                else:
+                    wX -= dX
+                if (wX <= 100):
+                    print "Yaw:", wX
+                    yaw.percentage( int(wX) )
+
+            scanline.append( str( robohat.getDistance() ) )
+            print "Scan: ", cX, cY
+            cX += 1
+
+        if not lr:
+            scanline.reverse()
+        response += ','.join(scanline)
+        cX = 0
+        cY += 1
+        wY -= dY
+        lr = (lr == False)
+        response += "]"
+
+    yaw.mid()
+    tilt.centre()
+
+    response += ']}}'
+    server.send(response)
 
 def handleMessage(msg, data):
     global server, tilt, yaw
@@ -153,9 +201,31 @@ def handleMessage(msg, data):
         else:
             print "Yaw", val
             yaw.percentage(val)
-        msg='{{"msg":{0},"data":{{"msg":{1}}}}}';
-        msg = msg.format(Messages.MSG_OK_DONE, msg)
-        server.send(msg)
+        reply='{{"msg":{0},"data":{{"msg":{1}}}}}';
+        reply = reply.format(Messages.MSG_OK_DONE, msg)
+        server.send(reply)
+    elif msg == Messages.MSG_DETAIL_SCAN:
+        hGran=5
+        vGran=5
+        width=80
+        height=60
+        x = 50
+        y = 40
+        if data != None:
+            if "hG" in data:
+                hGran = data["hG"]
+            if "vG" in data:
+                vGran = data["vG"]
+            if "w" in data:
+                width = data["w"]
+            if "h" in data:
+                height = data["h"]
+            if "x" in data:
+                x = data["x"]
+            if "y" in data:
+                y = data["y"]
+        print "Scan:", hGran, ",", vGran
+        detailedSonarScan(hGran, vGran, width, height, x, y)
     else:
         print "[WARN] Not handled!", msg
 

@@ -54,7 +54,7 @@
                         </tr>
                         <tr>
                             <td><input type="button" value="Reset Clicks" onClick="robot.resetClicks();"></td>
-                            <td><input type="button" value="Detail" onClick="robot.detailedScan();"></td>
+                            <td></td>
                             <td><input type="button" value="Get Clicks" onClick="robot.getClicks();"></td>
                         </tr>
                         <tr>
@@ -125,7 +125,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan=2>
+                <td colspan="2">
                     <table>
                         <tr>
                             <td>&nbsp;</td>
@@ -147,7 +147,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan=2>
+                <td colspan="2">
                     <table>
                         <tr>
                             <td>Tilt</td>
@@ -166,6 +166,34 @@
         <table border="1">
             <tr>
                 <td><canvas id="contour_canvas" width="180" height="120"></canvas>
+                <td>
+                    <table class="centerTable">
+                        <tr>
+                            <td colspan="3"><input type="button" value="Detail" onClick="robot.detailedScan();"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><hr/></td>
+                        </tr>
+                        <tr>
+                            <td>X, Y Offset</td>
+                            <td><input id="scan_x_slide" type="range" min="0" max="100" step="10" value="50"/></td>
+                            <td><input id="scan_y_slide" type="range" min="0" max="100" step="10" value="45"/></td>
+                        </tr>
+                        <tr>
+                            <td>Width, Height %</td>
+                            <td><input id="scan_width" type="range" min="0" max="100" step="10" value="40"/></td>
+                            <td><input id="scan_height" type="range" min="0" max="100" step="10" value="28"/></td>
+                        </tr>
+                        <tr>
+                            <td>H and V Points</td>
+                            <td><input id="scan_horz_detail" type="range" min="0" max="16" step="1" value="5"/></td>
+                            <td><input id="scan_vert_detail" type="range" min="0" max="16" step="1" value="4"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><input type="button" value="SCAN" onClick="robot.detailedScan();"></td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
         </table>
         <textarea id="console" rows="100" cols="80" readonly></textarea>

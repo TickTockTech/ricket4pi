@@ -241,59 +241,29 @@ function Robot()
 
     obj.detailedScan = function()
     {
-        var tilt, yaw, renderData, i;
+        var x_ele = document.getElementById("scan_x_slide"),
+            y_ele = document.getElementById("scan_y_slide"),
+            w_ele = document.getElementById("scan_width"),
+            h_ele = document.getElementById("scan_height"),
+            hG_ele = document.getElementById("scan_horz_detail"),
+            vG_ele = document.getElementById("scan_vert_detail"),
+            hG, vG, x, y, w, h;
 
-        stage = obj._stage || 0;
-        result = obj._result || [];
+        hG = hG_ele.value;
+        vG = vG_ele.value;
+        w = w_ele.value;
+        h = h_ele.value;
+        x = x_ele.value;
+        y = y_ele.value;
 
-        if (stage == 25)
-        {
-            renderData = expandData(result);
-            colourCanvas(renderData);
-
-            obj._scanning = false;
-            return;
-        }
-
-        if (!obj._scanning)
-        {
-            for(i = 0; i < 5; ++i)
-            {
-                obj._result[i] = [];
-            }
-            obj._scanning = true;   
-        }
-
-        yaw = (stage % 5) * 25;
-        tilt = 25 + (((stage / 5) << 0) * 10)
-
-        connectionSend('{"msg":' + MSG_TILT_PERCENT + ',"data":{"v":' + tilt + '}}');
-        connectionSend('{"msg":' + MSG_YAW_PERCENT + ',"data":{"v":' + yaw + '}}');
-
-        obj._stage = stage + 1;
+        connectionSend('{"msg":' + MSG_DETAIL_SCAN + ',"data":{"hG":' + hG + ',"vG":' + vG + ',"w":' + w + ',"h":' + h + ',"x":' + x + ',"y":' + y + '}}');
+        consoleOut("Robot: Detailed scan");
     }
 
     obj.incomingMessage = function(msg, data)
     {
-        var x, y;
         switch(msg)
         {
-        case MSG_OK_DONE:
-            if (obj._scanning && data.msg == MSG_YAW_PERCENT)
-            {
-                obj.state_request_sensor_data();
-            }
-            break;
-        case MSG_SENSOR_DATA:
-            if (obj._scanning)
-            {
-                x = (stage % 5)
-                y = ((stage / 5) << 0)
-                console.log("[INFO] Scan[" + x + "," + y +"] = " + data.dist);
-                obj._result[x][y] = data.dist;
-                obj.detailedScan();
-            }
-            break;
         }
     }
 
