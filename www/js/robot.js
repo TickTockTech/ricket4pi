@@ -12,7 +12,24 @@ function rotateArray(inA)
         }
     }
 
-    return outA;    
+    return outA;
+}
+
+function highlightNear(inA)
+{
+    var i,j,outA;
+
+    outA = [];
+    for (i = 0; i < inA.length; ++i)
+    {
+        outA[i] = [];
+        for (j = 0; j < inA[i].length; ++l)
+        {
+            outA[i][j] = (inA[i][j] * (1 + (inA[i][j] / 25)));
+        }
+    }
+
+    return outA; 
 }
 
 function Robot()
