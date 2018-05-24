@@ -6,6 +6,10 @@ function rotateArray(inA)
     for (i = 0; i < inA.length; ++i)
     {
         outA[i] = [];
+    }
+
+    for (i = 0; i < inA.length; ++i)
+    {
         for (j = 0; j < inA[i].length; ++j)
         {
             outA[j][i] = inA[i][j];

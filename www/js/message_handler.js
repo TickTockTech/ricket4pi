@@ -37,7 +37,8 @@ function handleMessage(msg, data)
         case MSG_SONAR_SCAN_DATA:
             expand = expandData(data.dist);
             rotated = rotateArray(expand);
-            colourCanvas( highlightNear(rotated) );
+//            colourCanvas( highlightNear(rotated) );
+            colourCanvas( rotated );
             break;
         default:
             console.log("[WARNING] " + msg + " not handled.")
