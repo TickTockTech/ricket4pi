@@ -26,5 +26,6 @@ var MSG_NULL = 0,
     MSG_OK_DONE = 25,
     MSG_ERROR = 26,
     MSG_WARNING = 27,
-    MSG_DETAIL_SCAN = 28;
+    MSG_DETAIL_SCAN = 28,
+    MSG_FIND_WALL = 29;
 

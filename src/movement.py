@@ -55,15 +55,21 @@ def forward(revs, speed):
 
 # revs: number of wheel turns, float.
 def findWall(speed):
+    s = sensors[SENS_R]
+    sClicks = s._sensorClicks
     robohat.forward(speed)
+    # Sanity check (possibly report timeout)
+    countDown = 1000
 
-    while(not robohat.irAll()):
-        time.sleep(0.1)
+    while(not robohat.irAll() and countDown > 0):
+        time.sleep(0.01)
+        countDown -= 1
 
     robohat.stop()
 
     time.sleep(1)
-    print("final clicks: ", s._sensorClicks)
+    eClicks = s._sensorClicks
+    print("final clicks: ", (sClicks - eClicks))
 
 # revs: number of wheel turns, float.
 def reverse(revs, speed):

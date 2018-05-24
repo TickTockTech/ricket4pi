@@ -146,7 +146,7 @@ def handleMessage(msg, data):
         irR = jsonBool( robohat.irRight() )
         totClicks = newClicks - clicks
         reply='{{"msg":{0},"data":{{"msg":{1},"clicks":{2},"revs":{3},"l":{4},"r":{5}}}}}';
-        reply = reply.format(Messages.MSG_OK_DONE, msg, totClicks, (float(totClicks / movement.CLICKS_PER_REV)), irL, irR)
+        reply = reply.format(Messages.MSG_OK_DONE, msg, totClicks, (float(totClicks / move.CLICKS_PER_REV)), irL, irR)
         server.send(reply)
     elif msg == Messages.MSG_LEFT or msg == Messages.MSG_RIGHT:
         revs = 0.5
@@ -165,8 +165,10 @@ def handleMessage(msg, data):
             move.right(revs, speed)
         newClicks = move.getClicks()
         totClicks = newClicks - clicks
+        irL = jsonBool( robohat.irLeft() )
+        irR = jsonBool( robohat.irRight() )
         reply='{{"msg":{0},"data":{{"msg":{1},"clicks":{2},"revs":{3},"l":{4},"r":{5}}}}}';
-        reply = reply.format(Messages.MSG_OK_DONE, msg, totClicks, (float(totClicks / movement.CLICKS_PER_REV)), irL, irR)
+        reply = reply.format(Messages.MSG_OK_DONE, msg, totClicks, (float(totClicks / move.CLICKS_PER_REV)), irL, irR)
         server.send(reply)
     elif msg == Messages.MSG_SONAR_UP:
         print "Sonar up!"
@@ -243,11 +245,15 @@ def handleMessage(msg, data):
     elif msg == Messages.MSG_FIND_WALL:
         print "Find wall!"
         clicks = move.getClicks()
-        move.findWall(30)
+        yaw.mid()
+        tilt.park()
+        move.findWall(35)
         newClicks = move.getClicks()
         totClicks = newClicks - clicks
+        irL = jsonBool( robohat.irLeft() )
+        irR = jsonBool( robohat.irRight() )
         reply='{{"msg":{0},"data":{{"msg":{1},"clicks":{2},"revs":{3},"l":{4},"r":{5}}}}}';
-        reply = reply.format(Messages.MSG_OK_DONE, msg, totClicks, (float(totClicks / movement.CLICKS_PER_REV)), irL, irR)
+        reply = reply.format(Messages.MSG_OK_DONE, msg, totClicks, (float(totClicks / move.CLICKS_PER_REV)), irL, irR)
         server.send(reply)
     else:
         print "[WARN] Not handled!", msg
