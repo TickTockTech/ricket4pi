@@ -48,56 +48,66 @@ def sonarScan():
     msg = msg.format(Messages.MSG_SONAR_SCAN_DATA, uL, cL, dL, uM, cM, dM, uR, cR, dR)
     server.send(msg)
 
-def detailedSonarScan(hGran=5, vGran=5, width=80, height=60, x = 50, y = 40):
+def detailedSonarScan(hGran=5, vGran=5, width=60, height=40, x = 50, y = 40):
     global tilt, yaw
 
     wX = x - (width / 2)
-    wY = y - (width / 2)
+    wY = y + (width / 2)
 
     if wX < 0 or wY < 0 or wX > 100 or wY > 100:
         server.send('{{"msg":{},"data":{{"error":"{}""}}}}'.format(Messages.MSG_ERROR, "Scan coordinates are invalid."))
         return
 
-    dX = float(width) / wGran;
-    dY = float(height) / hGran;
+    dX = float(width) / hGran;
+    dY = float(height) / vGran;
     lr = True
     cX = 0
     cY = 0
+    print "Scan start:", wX, wY
+    print "Deltas:", dX, dY
+    print "Size:", hGran, vGran
 
+    print "Yaw:", wX
     yaw.percentage(wX)
-    response = '{"msg":' + MSG_SONAR_SCAN_DATA + ',"data":{"dist":['
+    response = '{"msg":' + str(Messages.MSG_SONAR_SCAN_DATA) + ',"data":{"dist":['
 
     while cY < vGran:
         if cX != 0 or cY != 0:
             response += ","
         response += "["
 
+        scanline = []
         while cX < hGran:
             if cX == 0:
                 if (wY <= 100):
-                    tilt.percentage(wY)
+                    print "Tilt:", wY
+                    tilt.percentage( int(wY) )
             else:
-                response += ","
                 if lr:
                     wX += dX
                 else:
                     wX -= dX
-                cX += 1
                 if (wX <= 100):
-                    yaw.percentage(wX)
+                    print "Yaw:", wX
+                    yaw.percentage( int(wX) )
 
-            response += robohat.getDistance()
+            scanline.append( str( robohat.getDistance() ) )
+            print "Scan: ", cX, cY
+            cX += 1
 
+        if not lr:
+            scanline.reverse()
+        response += ','.join(scanline)
         cX = 0
         cY += 1
-        wY += dY
-        lr = !lr
+        wY -= dY
+        lr = (lr == False)
         response += "]"
 
     yaw.mid()
     tilt.centre()
 
-    response += ']}'
+    response += ']}}'
     server.send(response)
 
 def handleMessage(msg, data):
@@ -205,7 +215,7 @@ def handleMessage(msg, data):
             if "hG" in data:
                 hGran = data["hG"]
             if "vG" in data:
-                hGran = data["vG"]
+                vGran = data["vG"]
             if "w" in data:
                 width = data["w"]
             if "h" in data:
@@ -214,6 +224,7 @@ def handleMessage(msg, data):
                 x = data["x"]
             if "y" in data:
                 y = data["y"]
+        print "Scan:", hGran, ",", vGran
         detailedSonarScan(hGran, vGran, width, height, x, y)
     else:
         print "[WARN] Not handled!", msg

@@ -239,7 +239,7 @@ function Robot()
         x = x_ele.value;
         y = y_ele.value;
 
-        connectionSend('{"msg":' + MSG_DETAIL_SCAN + ',"data":{"hG":' + hG + ',"vG":' + vG + '"w":' + w + '"h":' + h + '"x":' + x + '"y":' + y + '}}');
+        connectionSend('{"msg":' + MSG_DETAIL_SCAN + ',"data":{"hG":' + hG + ',"vG":' + vG + ',"w":' + w + ',"h":' + h + ',"x":' + x + ',"y":' + y + '}}');
         consoleOut("Robot: Detailed scan");
     }
 

@@ -177,20 +177,20 @@
                         <tr>
                             <td>X, Y Offset</td>
                             <td><input id="scan_x_slide" type="range" min="0" max="100" step="10" value="50"/></td>
-                            <td><input id="scan_y_slide" type="range" min="0" max="100" step="10" value="50"/></td>
+                            <td><input id="scan_y_slide" type="range" min="0" max="100" step="10" value="45"/></td>
                         </tr>
                         <tr>
                             <td>Width, Height %</td>
-                            <td><input id="scan_width" type="range" min="0" max="100" step="10" value="60"/></td>
-                            <td><input id="scan_height" type="range" min="0" max="100" step="10" value="40"/></td>
+                            <td><input id="scan_width" type="range" min="0" max="100" step="10" value="40"/></td>
+                            <td><input id="scan_height" type="range" min="0" max="100" step="10" value="28"/></td>
                         </tr>
                         <tr>
                             <td>H and V Points</td>
                             <td><input id="scan_horz_detail" type="range" min="0" max="16" step="1" value="5"/></td>
-                            <td><input id="scan_vert_defailt" type="range" min="0" max="16" step="1" value="4"/></td>
+                            <td><input id="scan_vert_detail" type="range" min="0" max="16" step="1" value="4"/></td>
                         </tr>
                         <tr>
-                            <td colspan="3"><input type="button" value="SCAN" onClick="robot.granularScan();"></td>
+                            <td colspan="3"><input type="button" value="SCAN" onClick="robot.detailedScan();"></td>
                         </tr>
                     </table>
                 </td>
