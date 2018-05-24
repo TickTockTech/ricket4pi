@@ -23,5 +23,7 @@ Improvements
  X Basic scan scans tighter area.
  X Return angle estimate from turn.
  X Return clicks and ir after move.
- * Remove client-side scan.
+ X Remove client-side scan.
  * Basic scan will have incorrect scan lines due to right-left scanning
+ * Turn slider revs shouldn't allow more than approx 360 turns.
+ * Turn slider power min val. 50 or something.
