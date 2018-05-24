@@ -29,7 +29,7 @@ function highlightNear(inA)
         }
     }
 
-    return outA; 
+    return outA;
 }
 
 function Robot()
@@ -228,6 +228,12 @@ function Robot()
     {
         connectionSend('{"msg":' + MSG_GET_CLICKS + '}');
         consoleOut("Robot: get clicks.");
+    }
+
+    obj.findWall = function()
+    {
+        connectionSend('{"msg":' + MSG_FIND_WALL + '}');
+        consoleOut("Robot: find wall.");
     }
 
     obj.sonarTilt = function()

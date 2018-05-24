@@ -11,16 +11,17 @@ Second step:
  X Add granularity to tilt mechanism and messages.
  * Wheel click calibration with wall in-front.
  * Possible turn calibration using wall in-front and trig.
- * Add forward to interrupt command
+ X Add forward to interrupt command
 
 Refactoring
 
  * Send id. with messages.
+ * Break sock_main into smaller functions to break up large code sections
 
 Improvements
 
  X Basic scan scans tighter area.
- * Return angle estimate from turn.
- * Return clicks and ir after move.
+ X Return angle estimate from turn.
+ X Return clicks and ir after move.
  * Remove client-side scan.
  * Basic scan will have incorrect scan lines due to right-left scanning
