@@ -19,7 +19,8 @@ Refactoring
 
 Improvements
 
- * Basic scan scans tighter area.
+ X Basic scan scans tighter area.
  * Return angle estimate from turn.
  * Return clicks and ir after move.
  * Remove client-side scan.
+ * Basic scan will have incorrect scan lines due to right-left scanning

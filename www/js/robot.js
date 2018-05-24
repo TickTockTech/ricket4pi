@@ -1,3 +1,37 @@
+function rotateArray(inA)
+{
+    var i,j,outA;
+
+    outA = [];
+    for (i = 0; i < inA.length; ++i)
+    {
+        outA[i] = [];
+        for (j = 0; j < inA[i].length; ++l)
+        {
+            outA[j][i] = inA[i][j];
+        }
+    }
+
+    return outA;
+}
+
+function highlightNear(inA)
+{
+    var i,j,outA;
+
+    outA = [];
+    for (i = 0; i < inA.length; ++i)
+    {
+        outA[i] = [];
+        for (j = 0; j < inA[i].length; ++l)
+        {
+            outA[i][j] = (inA[i][j] * (1 + (inA[i][j] / 25)));
+        }
+    }
+
+    return outA; 
+}
+
 function Robot()
 {
     const STATE_INIT = 0,
@@ -239,7 +273,7 @@ function Robot()
         x = x_ele.value;
         y = y_ele.value;
 
-        connectionSend('{"msg":' + MSG_DETAIL_SCAN + ',"data":{"hG":' + hG + ',"vG":' + vG + '"w":' + w + '"h":' + h + '"x":' + x + '"y":' + y + '}}');
+        connectionSend('{"msg":' + MSG_DETAIL_SCAN + ',"data":{"hG":' + hG + ',"vG":' + vG + ',"w":' + w + ',"h":' + h + ',"x":' + x + ',"y":' + y + '}}');
         consoleOut("Robot: Detailed scan");
     }
 
