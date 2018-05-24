@@ -1,3 +1,20 @@
+function rotateArray(inA)
+{
+    var i,j,outA;
+
+    outA = [];
+    for (i = 0; i < inA.length; ++i)
+    {
+        outA[i] = [];
+        for (j = 0; j < inA[i].length; ++l)
+        {
+            outA[j][i] = inA[i][j];
+        }
+    }
+
+    return outA;    
+}
+
 function Robot()
 {
     const STATE_INIT = 0,
@@ -254,7 +271,6 @@ function Robot()
         connectionSend('{"msg":' + MSG_YAW_PERCENT + ',"data":{"v":' + yaw + '}}');
 
         obj._stage = stage + 1;
-
     }
 
     obj.incomingMessage = function(msg, data)
