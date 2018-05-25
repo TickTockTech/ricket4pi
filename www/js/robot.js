@@ -6,7 +6,7 @@ function rotateArray(inA)
     for (i = 0; i < inA.length; ++i)
     {
         outA[i] = [];
-        for (j = 0; j < inA[i].length; ++l)
+        for (j = 0; j < inA[i].length; ++j)
         {
             outA[j][i] = inA[i][j];
         }
@@ -23,7 +23,7 @@ function highlightNear(inA)
     for (i = 0; i < inA.length; ++i)
     {
         outA[i] = [];
-        for (j = 0; j < inA[i].length; ++l)
+        for (j = 0; j < inA[i].length; ++j)
         {
             outA[i][j] = (inA[i][j] * (1 + (inA[i][j] / 25)));
         }

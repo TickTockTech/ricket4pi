@@ -37,14 +37,14 @@ function loaded()
 
         try
         {
-            obj = JSON.parse(msg.data)
-            handleMessage(obj.msg, obj.data);
+            obj = JSON.parse(msg.data);
         }
         catch(e)
         {
             console.error("Invalid message: " + e);
             console.error("Message: " + msg)
         }
+        handleMessage(obj.msg, obj.data);
     };
 
     window.robot = Robot();
