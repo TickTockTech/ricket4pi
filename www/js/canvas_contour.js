@@ -1,3 +1,38 @@
+/** Colour the first 10 cm in shades of red
+ */
+var _colourReturn = {};  // Save creating a new object every time function called
+function distanceColouring(val)
+{
+    var r, g, b;
+
+    if (val <= 10)
+    {
+        r = 255 - (val * 25.4);
+    }
+    if (val <= 50)
+    {
+        g = 255 - ((val - 10) * 5.08);
+    }
+    if (val <= 50)
+    {
+        b = 255 - (val - 50);
+    }
+
+
+    if (r > 255) r = 255
+    if (g > 255) g = 255
+    if (b > 255) b = 255
+
+    if (r < 255) r = 0
+    if (g < 255) g = 0
+    if (b < 255) b = 0
+
+    _colourReturn.r = r;
+    _colourReturn.r = g;
+    _colourReturn.r = b;
+
+    return _colourReturn;
+
 // Linear estimated value between two points
 function smoothPoint(v1, v2, range, offset)
 {
@@ -102,7 +137,8 @@ function colourCanvas(dataArray)
         shade,
         i,
         x,
-        y;
+        y,
+        col;
 
     for(i = 0; i < imgDataLen / 4; i++){  //iterate over every pixel in the canvas
         x = i % REQUIRED_WIDTH;
@@ -110,10 +146,11 @@ function colourCanvas(dataArray)
         //if (i > 4000) debugger;
         shade = 255 - dataArray[x][y];
 
+        col = distanceColouring(shade);
 
-        imgData.data[4 * i] = shade;    // RED (0-255)
-        imgData.data[4 * i + 1] = shade;    // GREEN (0-255)
-        imgData.data[4 * i + 2] = shade;    // BLUE (0-255)
+        imgData.data[4 * i] = col.r;    // RED (0-255)
+        imgData.data[4 * i + 1] = col.g;    // GREEN (0-255)
+        imgData.data[4 * i + 2] = col.b;    // BLUE (0-255)
         imgData.data[4 * i + 3] = 255;  // APLHA (0-255)
     }
 
