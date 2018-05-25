@@ -3,17 +3,19 @@
 var _colourReturn = {};  // Save creating a new object every time function called
 function distanceColouring(val)
 {
-    var r, g, b;
+    var r = 0,
+        g = 0,
+        b = 0;
 
     if (val <= 10)
     {
         r = 255 - (val * 25.4);
     }
-    if (val <= 50)
+    if (val >= 5 && val <= 50)
     {
         g = 255 - ((val - 10) * 5.08);
     }
-    if (val <= 50)
+    if (val >= 25 && val <= 50)
     {
         b = 255 - (val - 50);
     }
@@ -23,13 +25,13 @@ function distanceColouring(val)
     if (g > 255) g = 255
     if (b > 255) b = 255
 
-    if (r < 255) r = 0
-    if (g < 255) g = 0
-    if (b < 255) b = 0
+    if (r < 0) r = 0
+    if (g < 0) g = 0
+    if (b < 0) b = 0
 
     _colourReturn.r = r << 0;
-    _colourReturn.r = g << 0;
-    _colourReturn.r = b << 0;
+    _colourReturn.g = g << 0;
+    _colourReturn.b = b << 0;
 
     return _colourReturn;
 }
