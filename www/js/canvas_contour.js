@@ -27,11 +27,12 @@ function distanceColouring(val)
     if (g < 255) g = 0
     if (b < 255) b = 0
 
-    _colourReturn.r = r;
-    _colourReturn.r = g;
-    _colourReturn.r = b;
+    _colourReturn.r = r << 0;
+    _colourReturn.r = g << 0;
+    _colourReturn.r = b << 0;
 
     return _colourReturn;
+}
 
 // Linear estimated value between two points
 function smoothPoint(v1, v2, range, offset)
@@ -144,9 +145,10 @@ function colourCanvas(dataArray)
         x = i % REQUIRED_WIDTH;
         y = (i / REQUIRED_WIDTH) << 0;
         //if (i > 4000) debugger;
-        shade = 255 - dataArray[x][y];
+//        shade = 255 - dataArray[x][y];
+        dist = dataArray[x][y];
 
-        col = distanceColouring(shade);
+        col = distanceColouring(dist);
 
         imgData.data[4 * i] = col.r;    // RED (0-255)
         imgData.data[4 * i + 1] = col.g;    // GREEN (0-255)

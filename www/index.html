@@ -1,5 +1,7 @@
+<!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8"/>
         <title>Ricket4Pi - Test Page</title>
         <script src="js/messages.js"></script>
         <script src="js/message_handler.js"></script>
@@ -135,7 +137,7 @@
                         <tr>
                             <td>Revs</td>
                             <td><input id="drive_revs" type="range" min="0.25" max="5" step="0.25" value="2"/></td>
-                            <td><input id="turn_revs" type="range" min="0.1" max="3" step="0.1" value="0.5"/></td>
+                            <td><input id="turn_revs" type="range" min="0.1" max="3" step="0.1" value="0.25"/></td>
                             </td>
                         </tr>
                         <tr>
@@ -177,17 +179,17 @@
                         <tr>
                             <td>X, Y Offset</td>
                             <td><input id="scan_x_slide" type="range" min="0" max="100" step="10" value="50"/></td>
-                            <td><input id="scan_y_slide" type="range" min="0" max="100" step="10" value="45"/></td>
+                            <td><input id="scan_y_slide" type="range" min="0" max="100" step="10" value="25"/></td>
                         </tr>
                         <tr>
                             <td>Width, Height %</td>
-                            <td><input id="scan_width" type="range" min="0" max="100" step="10" value="40"/></td>
-                            <td><input id="scan_height" type="range" min="0" max="100" step="10" value="28"/></td>
+                            <td><input id="scan_width" type="range" min="0" max="100" step="10" value="70"/></td>
+                            <td><input id="scan_height" type="range" min="0" max="100" step="10" value="40"/></td>
                         </tr>
                         <tr>
                             <td>H and V Points</td>
-                            <td><input id="scan_horz_detail" type="range" min="0" max="16" step="1" value="5"/></td>
-                            <td><input id="scan_vert_detail" type="range" min="0" max="16" step="1" value="4"/></td>
+                            <td><input id="scan_horz_detail" type="range" min="3" max="16" step="1" value="5"/></td>
+                            <td><input id="scan_vert_detail" type="range" min="2" max="16" step="1" value="3"/></td>
                         </tr>
                         <tr>
                             <td colspan="3"><input type="button" value="SCAN" onClick="robot.detailedScan();"></td>
