@@ -13,11 +13,13 @@ apt-get install supervisor
 
 pip install git+https://github.com/Pithikos/python-websocket-server
 
-cp $PROJ_DIR/scripts/ricket_www.conf /etc/supervisor/conf.d/
-cp $PROJ_DIR/scripts/ricket_websock.conf /etc/supervisor/conf.d/
+#cp $PROJ_DIR/scripts/ricket_www.conf /etc/supervisor/conf.d/
+#cp $PROJ_DIR/scripts/ricket_websock.conf /etc/supervisor/conf.d/
+cp $PROJ_DIR/scripts/ricket.conf /etc/supervisor/conf.d/
 
 # sed 's/old/new/' input.txt
-sed -i "s@\[install_dir\]@$PROJ_DIR@g" /etc/supervisor/conf.d/ricket_www.conf
-sed -i "s@\[install_dir\]@$PROJ_DIR@g" /etc/supervisor/conf.d/ricket_websock.conf
+#sed -i "s@\[install_dir\]@$PROJ_DIR@g" /etc/supervisor/conf.d/ricket_www.conf
+#sed -i "s@\[install_dir\]@$PROJ_DIR@g" /etc/supervisor/conf.d/ricket_websock.conf
+sed -i "s@\[install_dir\]@$PROJ_DIR@g" /etc/supervisor/conf.d/ricket.conf
 
 supervisorctl update

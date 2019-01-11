@@ -29,7 +29,7 @@ class ServoYaw:
         self.pwm.start(YAW_SERVO_MID)
         time.sleep(YAW_DELAY)
         self.pwm.stop()
-	time.sleep(YAW_PAUSE)
+        time.sleep(YAW_PAUSE)
 
         print "ServoYaw on pin:", YAW_SERVO_PIN
         print

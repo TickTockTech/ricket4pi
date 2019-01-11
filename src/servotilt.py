@@ -93,7 +93,7 @@ class ServoTilt:
         elif value < 0:
             value = 0
 
-	value = 100 - value
+        value = 100 - value
         range = float(DIR_SERVO_FLOOR - DIR_SERVO_PARK)
 
         d = (range / 100) * value
@@ -106,4 +106,3 @@ class ServoTilt:
         time.sleep(TILT_DELAY)
         self.pwm.stop()
         time.sleep(TILT_PAUSE)
-
