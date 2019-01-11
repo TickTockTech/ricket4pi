@@ -107,3 +107,4 @@ venv.bak/
 /logs/*.err
 /logs/*.log
 /bin/*.deb
+/microbit/logs/
