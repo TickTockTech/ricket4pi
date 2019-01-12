@@ -1,6 +1,13 @@
-from websocket import WebSockServer
+import os, sys
+micro_api_path = os.path.join(os.path.dirname(__file__), "..", "microbit")
+print "Micro:bit => ", micro_api_path
+sys.path.append(micro_api_path)
+
 import movement as move
 import robohat
+import micro_api
+
+from websocket import WebSockServer
 from messages import Messages
 from servoyaw import ServoYaw
 from servotilt import ServoTilt
@@ -121,10 +128,11 @@ def handleMessage(msg, data):
         lineL = jsonBool( robohat.irLeftLine() )
         lineR = jsonBool( robohat.irRightLine() )
         sonar = robohat.getDistance()
+        cmpCal = jsonBool( False )
 
         print "Read sensors!"
-        msg='{{"msg":{0},"data":{{"irL":{1},"irR":{2},"lineL":{3},"lineR":{4},"dist":{5}}}}}';
-        msg = msg.format(Messages.MSG_SENSOR_DATA, irL, irR, lineL, lineR, sonar)
+        msg='{{"msg":{0},"data":{{"irL":{1},"irR":{2},"lineL":{3},"lineR":{4},"dist":{5},"cmpCal":{6}}}}}';
+        msg = msg.format(Messages.MSG_SENSOR_DATA, irL, irR, lineL, lineR, sonar, cmpCal)
         server.send(msg)
     elif msg == Messages.MSG_FORWARD or msg == Messages.MSG_REVERSE:
         revs = 2

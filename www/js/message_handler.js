@@ -4,13 +4,16 @@ function sensor_data(data)
         td_irR = document.getElementById("irR"),
         td_lineL = document.getElementById("lineL"),
         td_lineR = document.getElementById("lineR"),
-        td_dist = document.getElementById("dist");
+        td_dist = document.getElementById("dist"),
+        td_cmpCal = document.getElementById("compassCalibrated"),
+        td_cmpHead = document.getElementById("compassHeading");
 
     td_irL.bgColor = data.irL ? "#00FF00" : "#FF0000";
     td_irR.bgColor = data.irR ? "#00FF00" : "#FF0000";
     td_lineL.bgColor = data.lineL ? "#00FF00" : "#FF0000";
     td_lineR.bgColor = data.lineR ? "#00FF00" : "#FF0000";
     td_dist.innerHTML = (data.dist << 0) + "&nbsp;cm";
+    td_cmpCal.bgColor = data.cmpCal ? "#00FF00" : "#FF0000";
 }
 
 function click_data(data)
