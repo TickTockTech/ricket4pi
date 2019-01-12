@@ -14,6 +14,8 @@ from servotilt import ServoTilt
 
 robohat.init()
 move.init()
+# This takes a second or so...
+micro_api.init()
 
 def jsonBool(boole):
     if boole:
@@ -128,7 +130,7 @@ def handleMessage(msg, data):
         lineL = jsonBool( robohat.irLeftLine() )
         lineR = jsonBool( robohat.irRightLine() )
         sonar = robohat.getDistance()
-        cmpCal = jsonBool( False )
+        cmpCal = jsonBool( micro_api.isCompassCalibrated() )
 
         print "Read sensors!"
         msg='{{"msg":{0},"data":{{"irL":{1},"irR":{2},"lineL":{3},"lineR":{4},"dist":{5},"cmpCal":{6}}}}}';
@@ -262,6 +264,15 @@ def handleMessage(msg, data):
         irR = jsonBool( robohat.irRight() )
         reply='{{"msg":{0},"data":{{"msg":{1},"clicks":{2},"revs":{3},"l":{4},"r":{5}}}}}';
         reply = reply.format(Messages.MSG_OK_DONE, msg, totClicks, (float(totClicks / move.CLICKS_PER_REV)), irL, irR)
+        server.send(reply)
+    elif msg == Messages.MSG_COMPASS_CALIBRATE:
+        print "[INFO] Start compass calibration"
+        micro_api.calibrateCompass()
+    elif msg == Messages.MSG_COMPASS_GET_HEADING:
+        heading = micro_api.getCompassHeading()
+        reply='{{"msg":{0},"data":{{"heading":{1}}}}}'
+        print "[INFO] Compass heading: {}".format(heading)
+        reply = reply.format(Messages.MSG_COMPASS_HEADING, heading)
         server.send(reply)
     else:
         print "[WARN] Not handled!", msg

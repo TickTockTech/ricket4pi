@@ -23,6 +23,13 @@ function click_data(data)
     td_clicks.innerHTML = data.clicks;
 }
 
+function compass_data(data)
+{
+    var td_heading = document.getElementById("compassHeading");
+
+    td_heading.innerHTML = data.heading;
+}
+
 function handleMessage(msg, data)
 {
     var expand;
@@ -43,6 +50,8 @@ function handleMessage(msg, data)
 //            colourCanvas( highlightNear(rotated) );
             colourCanvas( rotated );
             break;
+        case MSG_COMPASS_HEADING:
+            compass_data(data);
         default:
             console.log("[WARNING] " + msg + " not handled.")
 	}

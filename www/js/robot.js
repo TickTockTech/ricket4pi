@@ -286,6 +286,18 @@ function Robot()
         connectionSend('{"msg":' + MSG_DETAIL_SCAN + ',"data":{"hG":' + hG + ',"vG":' + vG + ',"w":' + w + ',"h":' + h + ',"x":' + x + ',"y":' + y + '}}');
         consoleOut("Robot: Detailed scan");
     }
+    
+    obj.calibrateCompass = function()
+    {
+        connectionSend('{"msg":' + MSG_COMPASS_CALIBRATE + '}');
+        consoleOut("Robot: calibrate compass.");
+    }
+    
+    obj.compassHeading = function()
+    {
+        connectionSend('{"msg":' + MSG_COMPASS_GET_HEADING + '}');
+        consoleOut("Robot: get compass heading.");
+    }
 
     obj.incomingMessage = function(msg, data)
     {

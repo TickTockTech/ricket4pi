@@ -94,6 +94,10 @@ def getCompassHeading():
     response = ser.readline().strip()
     return None if response == "None" else response
 
+def calibrateCompass():
+    _clearStream()
+    ser.write("compass.calibrate() \r".encode())
+
 def echoMessage(message):
     _clearStream()
     ser.write("print(\"{}\")\r".format(message).encode())
